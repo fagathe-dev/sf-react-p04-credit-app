@@ -1,0 +1,130 @@
+{
+  "code": "flash_pact",
+  "name": "FlashPact",
+  "logo": "/assets/logos/flashpact.svg",
+  "offers": [
+    {
+      "offerCode": "FLASH_TECH_MOBILIER",
+      "productName": "Crédit Tech & Mobilier",
+      "projectType": "personal_goods",
+      "nominalRate": 6.69,
+      "apr": 6.9,
+      "insuranceRate": 0.6,
+      "referenceAmount": 1500,
+      "referenceDurationMonths": 12,
+      "monthlyInstallment": 129.58,
+      "totalFinancingCost": 63.96,
+      "criteria": {
+        "minAmount": 300,
+        "maxAmount": 5000,
+        "minDurationMonths": 6,
+        "maxDurationMonths": 36,
+        "minMonthlyIncome": 1100,
+        "maxDebtRatioPercent": 34.0,
+        "minRemainderToLive": 600,
+        "minSeniorityMonths": 1,
+        "minRiskGrade": "GRADE_D",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "CDD",
+          "INDEPENDENT",
+          "RETIRED",
+          "STUDENT"
+        ]
+      }
+    },
+    {
+      "offerCode": "FLASH_GREEN_MOBILITY",
+      "productName": "Crédit Mobilité Verte",
+      "projectType": "green_loan",
+      "nominalRate": 4.41,
+      "apr": 4.5,
+      "insuranceRate": 0.6,
+      "referenceAmount": 3000,
+      "referenceDurationMonths": 24,
+      "monthlyInstallment": 130.82,
+      "totalFinancingCost": 175.68,
+      "criteria": {
+        "minAmount": 500,
+        "maxAmount": 8000,
+        "minDurationMonths": 6,
+        "maxDurationMonths": 36,
+        "minMonthlyIncome": 1100,
+        "maxDebtRatioPercent": 34.0,
+        "minRemainderToLive": 600,
+        "minSeniorityMonths": 1,
+        "minRiskGrade": "GRADE_D",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "CDD",
+          "INDEPENDENT",
+          "RETIRED",
+          "STUDENT"
+        ]
+      }
+    },
+    {
+      "offerCode": "FLASH_CASH_URGENCE",
+      "productName": "Crédit Cash Urgence",
+      "projectType": "cash_treasury",
+      "nominalRate": 8.56,
+      "apr": 8.9,
+      "insuranceRate": 0.6,
+      "referenceAmount": 1500,
+      "referenceDurationMonths": 12,
+      "monthlyInstallment": 130.87,
+      "totalFinancingCost": 79.44,
+      "criteria": {
+        "minAmount": 500,
+        "maxAmount": 6000,
+        "minDurationMonths": 6,
+        "maxDurationMonths": 24,
+        "minMonthlyIncome": 1150,
+        "maxDebtRatioPercent": 34.0,
+        "minRemainderToLive": 600,
+        "minSeniorityMonths": 2,
+        "minRiskGrade": "GRADE_D",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CDD",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "FLASH_AUTO_JEUNE",
+      "productName": "Prêt Auto Jeune Conducteur",
+      "projectType": "auto",
+      "nominalRate": 6.97,
+      "apr": 7.2,
+      "insuranceRate": 0.6,
+      "referenceAmount": 6000,
+      "referenceDurationMonths": 36,
+      "monthlyInstallment": 185.18,
+      "totalFinancingCost": 774.48,
+      "criteria": {
+        "minAmount": 1500,
+        "maxAmount": 12000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 48,
+        "minMonthlyIncome": 1200,
+        "maxDebtRatioPercent": 33.0,
+        "minRemainderToLive": 600,
+        "minSeniorityMonths": 3,
+        "minRiskGrade": "GRADE_D",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "CDD",
+          "INDEPENDENT",
+          "RETIRED",
+          "STUDENT"
+        ]
+      }
+    }
+  ]
+}

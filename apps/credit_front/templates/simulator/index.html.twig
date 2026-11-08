@@ -1,0 +1,95 @@
+{% extends 'base.html.twig' %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="module" src="{{ asset('js/pages/simulator.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    {% include 'partials/_breadcrumb.html.twig' with {current: 'Simulateur'} only %}
+
+    <section class="section section-tight">
+        <div class="container">
+            {#
+                Formulaire GET vers credit_tunnel : sans JavaScript, le CTA ouvre déjà le tunnel prérempli (étape 2).
+                assets/ts/components/quickSimulator.ts calcule l'estimation en direct à partir du barème ci-dessous.
+            #}
+            <form class="simulator" method="get" action="{{ formAction }}" data-quick-simulator>
+                <script type="application/json" data-simulator-offers>{{ offers|json_encode(constant('JSON_HEX_TAG') b-or constant('JSON_HEX_AMP') b-or constant('JSON_UNESCAPED_UNICODE'))|raw }}</script>
+                <input type="hidden" name="step" value="2">
+                {% for name, value in utm %}
+                    <input type="hidden" name="{{ name }}" value="{{ value }}">
+                {% endfor %}
+
+                <div class="simulator-form">
+                    <h1>Simulez votre crédit</h1>
+                    <p class="muted">Une estimation en quelques secondes, puis une comparaison personnalisée des offres de nos partenaires.</p>
+
+                    <fieldset class="field project-choice">
+                        <legend>Votre projet</legend>
+                        <div class="project-options">
+                            {% for page in pages %}
+                                {% set rate = pricing[page.projectType.value] ?? null %}
+                                <label class="project-option">
+                                    <input type="radio" name="project" value="{{ page.projectType.value }}" required{% if selected.project == page.projectType.value %} checked{% endif %}>
+                                    {% include 'partials/icons/_project.html.twig' with {project: page.projectType} only %}
+                                    <span class="project-option-label">{{ page.projectType.label }}</span>
+                                    {% if rate %}<span class="project-option-rate">dès {{ rate.fromAprBps|bps }}</span>{% endif %}
+                                </label>
+                            {% endfor %}
+                        </div>
+                    </fieldset>
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="simulator-amount">Montant</label>
+                            <div class="input-suffix">
+                                <input id="simulator-amount" type="number" name="amount" inputmode="numeric" min="300" max="100000" step="100" value="{{ selected.amount }}" required>
+                                <span aria-hidden="true">€</span>
+                            </div>
+                            <p class="field-hint">De 300 € à 100 000 €.</p>
+                        </div>
+                        <div class="field">
+                            <label for="simulator-duration">Durée</label>
+                            <select id="simulator-duration" name="duration">
+                                {% for months in durations %}
+                                    <option value="{{ months }}"{% if selected.duration == months %} selected{% endif %}>{{ months }} mois</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="field">
+                            <label for="simulator-income">Revenus nets mensuels du foyer</label>
+                            <div class="input-suffix">
+                                <input id="simulator-income" type="number" name="income" inputmode="numeric" min="0" max="100000" step="50" value="{{ selected.income }}" aria-describedby="simulator-income-hint">
+                                <span aria-hidden="true">€</span>
+                            </div>
+                            <p class="field-hint" id="simulator-income-hint">Facultatif : pour estimer la part de vos revenus consacrée au crédit.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="simulator-result" aria-live="polite" aria-label="Estimation">
+                    <div data-simulator-estimate hidden>
+                        <p class="result-label">Mensualité estimée</p>
+                        <p class="result-value"><span data-output="monthly"></span><small>/mois</small></p>
+                        <dl class="result-facts">
+                            <div><dt>TAEG fixe à partir de</dt><dd data-output="apr"></dd></div>
+                            <div data-ratio-row hidden><dt>Part de vos revenus</dt><dd data-output="ratio"></dd></div>
+                        </dl>
+                        <p class="result-warning small" data-ratio-warning hidden>Cette mensualité représente une part élevée de vos revenus : une durée plus longue peut l'alléger.</p>
+                        <p class="small muted">Estimation indicative hors assurance, d'après l'offre <span data-output="product"></span>, avant étude de votre situation complète.</p>
+                    </div>
+                    <p class="muted" data-simulator-empty>Choisissez un projet pour voir une estimation.</p>
+
+                    <div class="sticky-cta">
+                        <button type="submit" class="btn btn-primary btn-block">Comparer les offres personnalisées</button>
+                    </div>
+                    {% include 'partials/_legal_notice.html.twig' %}
+                </aside>
+            </form>
+        </div>
+    </section>
+{% endblock %}

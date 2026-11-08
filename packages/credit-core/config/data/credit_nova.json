@@ -1,0 +1,127 @@
+{
+  "code": "credit_nova",
+  "name": "CrediNova",
+  "logo": "/assets/logos/credinova.svg",
+  "offers": [
+    {
+      "offerCode": "NOVA_EQUIP_MAISON",
+      "productName": "Prêt Perso Équipement & Mobilier",
+      "projectType": "personal_goods",
+      "nominalRate": 5.27,
+      "apr": 5.4,
+      "insuranceRate": 0.55,
+      "referenceAmount": 3500,
+      "referenceDurationMonths": 24,
+      "monthlyInstallment": 153.97,
+      "totalFinancingCost": 233.68,
+      "criteria": {
+        "minAmount": 1000,
+        "maxAmount": 15000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 48,
+        "minMonthlyIncome": 1400,
+        "maxDebtRatioPercent": 33.0,
+        "minRemainderToLive": 800,
+        "minSeniorityMonths": 6,
+        "minRiskGrade": "GRADE_B",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CDD",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "NOVA_AUTO_OCCASION",
+      "productName": "Prêt Auto Occasion",
+      "projectType": "auto",
+      "nominalRate": 5.37,
+      "apr": 5.5,
+      "insuranceRate": 0.55,
+      "referenceAmount": 12000,
+      "referenceDurationMonths": 48,
+      "monthlyInstallment": 278.37,
+      "totalFinancingCost": 1625.76,
+      "criteria": {
+        "minAmount": 2000,
+        "maxAmount": 40000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 72,
+        "minMonthlyIncome": 1500,
+        "maxDebtRatioPercent": 33.0,
+        "minRemainderToLive": 800,
+        "minSeniorityMonths": 6,
+        "minRiskGrade": "GRADE_C",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CDD",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "NOVA_TRAVAUX_CONFORT",
+      "productName": "Prêt Travaux Confort",
+      "projectType": "home_improvement",
+      "nominalRate": 5.08,
+      "apr": 5.2,
+      "insuranceRate": 0.55,
+      "referenceAmount": 15000,
+      "referenceDurationMonths": 60,
+      "monthlyInstallment": 283.62,
+      "totalFinancingCost": 2430,
+      "criteria": {
+        "minAmount": 3000,
+        "maxAmount": 50000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 84,
+        "minMonthlyIncome": 1600,
+        "maxDebtRatioPercent": 33.0,
+        "minRemainderToLive": 800,
+        "minSeniorityMonths": 6,
+        "minRiskGrade": "GRADE_C",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CDD",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "NOVA_TRESO_LIBRE",
+      "productName": "Prêt Trésorerie Libre",
+      "projectType": "cash_treasury",
+      "nominalRate": 6.31,
+      "apr": 6.5,
+      "insuranceRate": 0.55,
+      "referenceAmount": 5000,
+      "referenceDurationMonths": 36,
+      "monthlyInstallment": 152.81,
+      "totalFinancingCost": 583.6,
+      "criteria": {
+        "minAmount": 1500,
+        "maxAmount": 25000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 60,
+        "minMonthlyIncome": 1450,
+        "maxDebtRatioPercent": 33.0,
+        "minRemainderToLive": 800,
+        "minSeniorityMonths": 6,
+        "minRiskGrade": "GRADE_C",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CDD",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,3 @@
+# Domaine métier partagé (packages/credit-core) : catalogue lu en lecture seule pour les barèmes indicatifs.
+# Les logos sont servis par AssetMapper (config/packages/asset_mapper.yaml) : pas d'URL absolue nécessaire.
+credit_core: ~

@@ -1,0 +1,145 @@
+@use 'tokens' as *;
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  border-bottom: 1px solid $color-border;
+  background: $color-surface;
+}
+
+.header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space * 2;
+  min-height: 64px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: $space;
+  margin-right: auto;
+  font-weight: 700;
+  color: $color-ink;
+  text-decoration: none;
+}
+
+.brand-mark {
+  width: 32px;
+  height: 32px;
+
+  rect {
+    fill: $color-primary;
+  }
+
+  path {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.main-nav {
+  order: 3;
+  width: 100%;
+  overflow-x: auto;
+
+  ul {
+    display: flex;
+    gap: $space * 2;
+    margin: 0;
+    padding: 0 0 $space;
+    list-style: none;
+  }
+
+  a {
+    color: $color-muted;
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+
+    &:hover,
+    &[aria-current='page'] {
+      color: $color-primary;
+    }
+  }
+
+  @include from(960px) {
+    order: 0;
+    width: auto;
+
+    ul {
+      padding: 0;
+    }
+  }
+}
+
+.section {
+  padding: $space * 7 0;
+}
+
+.section-alt {
+  background: $color-surface-alt;
+}
+
+.two-columns {
+  display: grid;
+  gap: $space * 5;
+
+  @include from(860px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.site-footer {
+  padding: $space * 5 0 $space * 3;
+  border-top: 1px solid $color-border;
+  font-size: 0.9375rem;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    margin-bottom: $space;
+  }
+
+  a {
+    color: $color-text;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-primary;
+    }
+  }
+}
+
+.footer-grid {
+  display: grid;
+  gap: $space * 4;
+  margin: $space * 4 0;
+
+  @include from(560px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include from(960px) {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+
+.footer-title {
+  margin-bottom: $space;
+  font-weight: 700;
+  color: $color-ink;
+}
+
+.copyright {
+  font-size: 0.875rem;
+}

@@ -1,0 +1,59 @@
+@use 'tokens' as *;
+
+// Base du site : la remise à zéro, la typographie (h1–h6, .lead, .small), les liens, .container et
+// .breadcrumb viennent du design-system. Ne restent ici que les ajustements propres au site vitrine.
+
+body {
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  margin-block-end: $space * 2;
+}
+
+p {
+  margin: 0 0 $space * 2;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+
+  &:focus {
+    left: $space * 2;
+    top: $space * 2;
+    z-index: 10;
+    background: $color-surface;
+    padding: $space;
+  }
+}
+
+// Largeur de lecture du site (le .container du design-system suit ses breakpoints)
+.container {
+  max-width: $container;
+}
+
+.narrow {
+  max-width: 968px;
+}
+
+.muted {
+  color: $color-muted;
+}
+
+.center {
+  text-align: center;
+  justify-content: center;
+}
+
+// Fil d'Ariane : composant .breadcrumb / .breadcrumb-item du design-system, espacé du header
+.breadcrumb-nav {
+  padding-top: $space * 2;
+}

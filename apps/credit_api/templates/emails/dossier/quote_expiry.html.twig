@@ -1,0 +1,12 @@
+{% extends '@CorePhp/layout.html.twig' %}
+
+{% block preheader %}Vos offres expirent le {{ dto.expiresAt }}.{% endblock %}
+
+{% block content %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Bonjour ' ~ dto.recipientName|e ~ ',', level: 'h2', spacing: 16 } only %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Votre devis expire bientôt : vos offres pour ce projet ne sont plus valables après le <strong>' ~ dto.expiresAt ~ '</strong>.', spacing: 8 } only %}
+  {% include 'emails/dossier/_summary.html.twig' with { dto: dto } only %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Passé cette date, il faudra refaire une demande : les taux et les conditions peuvent changer.', spacing: 24 } only %}
+  {% include '@CorePhp/components/_button.html.twig' with { label: 'Voir mes offres', url: dto.dossierUrl, spacing: 24 } only %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.', level: 'small', tone: 'muted', spacing: 16 } only %}
+{% endblock %}

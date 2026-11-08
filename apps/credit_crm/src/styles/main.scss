@@ -1,0 +1,187 @@
+@use 'credit-front-core/src/styles/tokens' as *;
+
+// Styles propres à credit_crm (la base commune vient de credit-front-core/src/styles/index.scss)
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: $space * 2;
+
+  .field {
+    min-width: 220px;
+  }
+}
+
+.filters-total {
+  margin: 0 0 $space * 3.5 auto;
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-surface;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+
+  th,
+  td {
+    padding: $space * 1.5 $space * 2;
+    border-bottom: 1px solid $color-border;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  thead th {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: $color-muted;
+    background: $color-surface-alt;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.cell-sub {
+  display: block;
+  font-size: 0.8125rem;
+  color: $color-muted;
+}
+
+.cell-reason {
+  display: block;
+  max-width: 420px;
+  margin-top: 2px;
+  font-size: 0.8125rem;
+  color: $color-text;
+}
+
+// Priorité d'appel (RG-01 à RG-04)
+.priority-badge {
+  display: inline-grid;
+  place-items: center;
+  min-width: 48px;
+  padding: 2px $space;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  white-space: nowrap;
+  background: $color-surface-alt;
+  color: $color-muted;
+
+  &.priority-p1 {
+    background: $color-danger;
+    color: #fff;
+  }
+
+  &.priority-p1_bis {
+    background: $color-warning;
+    color: #fff;
+  }
+
+  &.priority-p2 {
+    background: $color-primary;
+    color: #fff;
+  }
+
+  &.priority-p3 {
+    background: $color-primary-soft;
+    color: $color-primary-dark;
+  }
+}
+
+.priority-card {
+  display: flex;
+  gap: $space * 2;
+  align-items: flex-start;
+  padding: $space * 2;
+  border: 1px solid $color-border;
+  border-left-width: 4px;
+  border-radius: $radius;
+  background: $color-surface;
+
+  p {
+    margin: $space * 0.5 0 0;
+  }
+
+  &.priority-p1 {
+    border-left-color: $color-danger;
+  }
+
+  &.priority-p1_bis {
+    border-left-color: $color-warning;
+  }
+
+  &.priority-p2,
+  &.priority-p3 {
+    border-left-color: $color-primary;
+  }
+}
+
+.email-history {
+  display: grid;
+  gap: $space * 1.5;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    gap: 2px;
+    padding-left: $space * 1.5;
+    border-left: 3px solid $color-success;
+
+    &.is-failed {
+      border-left-color: $color-danger;
+    }
+  }
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space * 2;
+  margin-top: $space * 2;
+}
+
+.crm-dossier {
+  display: grid;
+  gap: $space * 2;
+}
+
+.crm-grid {
+  display: grid;
+  gap: $space * 3;
+
+  @include from(1024px) {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+}
+
+.crm-main {
+  display: grid;
+  gap: $space * 3;
+
+  h1 {
+    margin: 0;
+  }
+}
+
+.crm-side {
+  display: grid;
+  gap: $space * 2;
+}
+

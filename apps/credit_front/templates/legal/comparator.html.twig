@@ -1,0 +1,28 @@
+{% extends 'legal/_layout.html.twig' %}
+
+{% block legal_title %}Fonctionnement de notre comparateur{% endblock %}
+
+{% block legal_content %}
+    <section>
+        <h2>Classement des offres</h2>
+        <p>Les offres compatibles avec votre profil sont classées par défaut selon leur taux annuel effectif global (TAEG) fixe, du plus bas au plus élevé. À TAEG égal, l'offre à la mensualité la plus faible est présentée en premier.</p>
+        <p>Le TAEG inclut les intérêts et les frais obligatoires. L'assurance emprunteur facultative n'y est pas comprise&nbsp;; son coût est affiché à part.</p>
+    </section>
+
+    <section>
+        <h2>Périmètre</h2>
+        <p>Le comparateur s'appuie sur un panel restreint de {{ partners|length }} établissements partenaires fictifs, couvrant {{ offerCount }} produits de crédit à la consommation&nbsp;:</p>
+        <ul>
+            {% for partner in partners %}
+                <li>{{ partner.name }}</li>
+            {% endfor %}
+        </ul>
+        <p>Ce panel n'est pas exhaustif&nbsp;: d'autres offres existent sur le marché.</p>
+    </section>
+
+    <section>
+        <h2>Actualisation et rémunération</h2>
+        <p>Les conditions des offres (TAEG, montants, durées, critères d'éligibilité) proviennent du catalogue des partenaires et sont mises à jour avec lui.</p>
+        <p>Dans un cadre réel, le courtier perçoit une commission de l'établissement prêteur lorsqu'un crédit est accordé. Cette rémunération n'a aucune incidence sur le classement des offres. Dans ce projet de démonstration, aucune commission n'est perçue.</p>
+    </section>
+{% endblock %}

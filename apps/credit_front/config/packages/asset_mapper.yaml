@@ -1,0 +1,12 @@
+framework:
+    asset_mapper:
+        # Seuls les logos partenaires passent par AssetMapper (asset('logos/credinova.svg'), URL versionnée).
+        # Le CSS et le JS sont compilés par npm (scripts/compile-*.js) dans public/css et public/js.
+        paths:
+            '%kernel.project_dir%/../../packages/credit-core/assets/logos': 'logos'
+        missing_import_mode: strict
+
+when@prod:
+    framework:
+        asset_mapper:
+            missing_import_mode: warn

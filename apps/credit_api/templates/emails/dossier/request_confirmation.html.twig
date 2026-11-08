@@ -1,0 +1,19 @@
+{% extends '@CorePhp/layout.html.twig' %}
+
+{% block preheader %}Votre demande est enregistrée : retrouvez son résultat dans votre espace client.{% endblock %}
+
+{% block content %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Bonjour ' ~ dto.recipientName|e ~ ',', level: 'h2', spacing: 16 } only %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Nous avons bien reçu votre demande de crédit :', spacing: 8 } only %}
+  {% include 'emails/dossier/_summary.html.twig' with { dto: dto } only %}
+  {% if dto.quotesCount > 0 %}
+    {% include '@CorePhp/components/_text.html.twig' with {
+      content: dto.quotesCount ~ ' offre' ~ (dto.quotesCount > 1 ? 's' : '') ~ ' correspond' ~ (dto.quotesCount > 1 ? 'ent' : '') ~ ' à votre profil, valable' ~ (dto.quotesCount > 1 ? 's' : '') ~ ' jusqu\'au ' ~ dto.expiresAt ~ '.',
+      spacing: 24,
+    } only %}
+  {% else %}
+    {% include '@CorePhp/components/_text.html.twig' with { content: 'Le résultat détaillé de l\'étude de votre demande est disponible dans votre espace client.', spacing: 24 } only %}
+  {% endif %}
+  {% include '@CorePhp/components/_button.html.twig' with { label: 'Voir mon dossier', url: dto.dossierUrl, spacing: 24 } only %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Un crédit vous engage et doit être remboursé. Vérifiez vos capacités de remboursement avant de vous engager.', level: 'small', tone: 'muted', spacing: 16 } only %}
+{% endblock %}

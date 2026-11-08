@@ -1,0 +1,5 @@
+{# Récapitulatif commun : projet, montant, durée (libellés formatés par DossierMailFactory) #}
+{% include '@CorePhp/components/_text.html.twig' with {
+  content: '<strong>' ~ dto.projectLabel|e ~ '</strong> · ' ~ dto.amountLabel ~ ' sur ' ~ dto.durationMonths ~ ' mois',
+  spacing: 16,
+} only %}

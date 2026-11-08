@@ -1,0 +1,185 @@
+@use 'credit-front-core/src/styles/tokens' as *;
+
+// ==========================================================================
+// Component: Stepper (components/ui/Stepper.tsx)
+// --------------------------------------------------------------------------
+// Pastilles numérotées reliées par un trait, libellés sous les pastilles.
+// États : .is-current (rôle primary), .is-complete (coche, cliquable), .is-upcoming.
+// Sous 768px : pastilles réduites, libellés masqués, résumé « Étape n sur N ».
+// ==========================================================================
+
+.stepper {
+  // 1. Component Tokens
+  --stepper-indicator-size: 44px;
+  --stepper-indicator-font-size: 0.9375rem;
+  --stepper-line-thickness: 2px;
+  --stepper-line-gap: #{$space * 1.5};
+  --stepper-line-color: #{$color-border};
+  --stepper-line-complete-color: #{$color-primary};
+  --stepper-upcoming-bg: #{$color-surface-alt};
+  --stepper-upcoming-color: #{$color-ink};
+  --stepper-upcoming-border: #{$color-border};
+  --stepper-current-bg: #{$color-primary};
+  --stepper-current-color: #fff;
+  --stepper-complete-bg: #{$color-primary-soft};
+  --stepper-complete-color: #{$color-primary};
+  --stepper-label-color: #{$color-muted};
+  --stepper-label-current-color: #{$color-ink};
+
+  // 2. Box Model
+  inline-size: 100%;
+
+  @media (max-width: 767.98px) {
+    --stepper-indicator-size: 28px;
+    --stepper-indicator-font-size: 0.75rem;
+    --stepper-line-gap: #{$space * 0.5};
+  }
+}
+
+.stepper-list {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.stepper-item {
+  position: relative;
+  display: flex;
+  flex: 1 1 0;
+  justify-content: center;
+  min-inline-size: 0;
+
+  // Trait vers l'étape suivante, interrompu autour des pastilles
+  &:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    inset-block-start: calc((var(--stepper-indicator-size) - var(--stepper-line-thickness)) / 2);
+    inset-inline-start: calc(50% + var(--stepper-indicator-size) / 2 + var(--stepper-line-gap));
+    inset-inline-end: calc(-50% + var(--stepper-indicator-size) / 2 + var(--stepper-line-gap));
+    block-size: var(--stepper-line-thickness);
+    border-radius: 999px;
+    background-color: var(--stepper-line-color);
+    transition: background-color 0.2s ease;
+  }
+
+  &.is-complete:not(:last-child)::after {
+    background-color: var(--stepper-line-complete-color);
+  }
+}
+
+.stepper-trigger {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space;
+  min-inline-size: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: inherit;
+  text-align: center;
+
+  &:is(button) {
+    cursor: pointer;
+    border-radius: $radius-sm;
+
+    &:hover .stepper-indicator {
+      box-shadow: 0 0 0 4px rgba($color-primary, 0.15);
+    }
+
+    &:focus-visible {
+      outline: 3px solid rgba($color-primary, 0.45);
+      outline-offset: 4px;
+    }
+  }
+}
+
+.stepper-indicator {
+  display: grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--stepper-indicator-size);
+  block-size: var(--stepper-indicator-size);
+  border: 1px solid var(--stepper-upcoming-border);
+  border-radius: 50%;
+  background-color: var(--stepper-upcoming-bg);
+  color: var(--stepper-upcoming-color);
+  font-size: var(--stepper-indicator-font-size);
+  font-weight: 700;
+  line-height: 1;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+
+  svg {
+    inline-size: 55%;
+    block-size: 55%;
+    stroke-width: 2.6;
+  }
+
+  .is-current & {
+    border-color: var(--stepper-current-bg);
+    background-color: var(--stepper-current-bg);
+    color: var(--stepper-current-color);
+  }
+
+  .is-complete & {
+    border-color: var(--stepper-complete-bg);
+    background-color: var(--stepper-complete-bg);
+    color: var(--stepper-complete-color);
+  }
+}
+
+// Étape bis : pastille réduite, centrée sur la même ligne que les autres
+.stepper-item.is-secondary .stepper-indicator {
+  --stepper-secondary-offset: calc(var(--stepper-indicator-size) * 0.12);
+
+  inline-size: calc(var(--stepper-indicator-size) * 0.76);
+  block-size: calc(var(--stepper-indicator-size) * 0.76);
+  margin-block: var(--stepper-secondary-offset);
+  font-size: calc(var(--stepper-indicator-font-size) * 0.85);
+}
+
+.stepper-suffix {
+  margin-inline-start: 1px;
+  font-size: 0.6em;
+  font-weight: 600;
+}
+
+.stepper-label {
+  max-inline-size: 100%;
+  font-size: 0.8125rem;
+  line-height: 1.3;
+  color: var(--stepper-label-color);
+  overflow-wrap: anywhere;
+
+  .is-current & {
+    font-weight: 600;
+    color: var(--stepper-label-current-color);
+  }
+
+  @media (max-width: 767.98px) {
+    // Masqué visuellement, conservé pour les lecteurs d'écran
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+.stepper-summary {
+  margin: $space * 1.5 0 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-align: center;
+  color: $color-ink;
+
+  @include from(768px) {
+    display: none;
+  }
+}

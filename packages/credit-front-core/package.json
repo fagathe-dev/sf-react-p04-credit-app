@@ -1,0 +1,28 @@
+{
+  "name": "credit-front-core",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Types, services API et composants partagés par les applications React du comparateur de crédit (consommé en source, sans build)",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "sideEffects": [
+    "**/*.scss"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit -p tsconfig.json"
+  },
+  "dependencies": {
+    "core-react": "git+https://github.com/fagathe-dev/core-react.git#master",
+    "core-ts": "git+https://github.com/fagathe-dev/core-ts.git#master"
+  },
+  "peerDependencies": {
+    "react": ">=19",
+    "react-dom": ">=19"
+  },
+  "devDependencies": {
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "~6.0.3"
+  }
+}

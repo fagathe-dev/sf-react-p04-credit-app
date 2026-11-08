@@ -1,0 +1,34 @@
+/deploy*
+/tmp*
+/vendor/
+/var/
+
+# npm (workspaces : un seul node_modules à la racine)
+node_modules/
+dist/
+
+# Fichiers d'environnement des développeurs (secrets) : jamais versionnés
+.env.local
+.env.develop
+.env.*.local
+
+# Cache des outils d'analyse
+/.php-cs-fixer.cache
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE & Éditeurs
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.sublime-project
+*.sublime-workspace
+
+# Fichiers temporaires & scripts locaux
+*.log
+deploy-todo.sh
+tmp.md

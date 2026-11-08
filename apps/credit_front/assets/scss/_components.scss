@@ -1,0 +1,329 @@
+@use 'tokens' as *;
+
+// Boutons : composant .btn du design-system (.btn-primary, .btn-outline-primary, .btn-sm, .btn-lg…).
+// Seule la pleine largeur (.btn-block, _simulator.scss), absente du kit, est propre au site.
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space * 1.5;
+  margin-top: $space * 3;
+}
+
+// En-tête de page du site (2 colonnes : texte + carte). Distinct du .hero centré du design-system.
+.page-hero {
+  padding: $space * 7 0;
+  background: linear-gradient(180deg, $color-primary-soft 0%, $color-surface 100%);
+}
+
+.hero-compact {
+  padding: $space * 4 0 $space * 6;
+}
+
+.hero-inner {
+  display: grid;
+  gap: $space * 5;
+  align-items: start;
+
+  @include from(960px) {
+    grid-template-columns: 3fr 2fr;
+  }
+}
+
+.eyebrow {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-primary;
+}
+
+// .lead : typographie du design-system, couleur atténuée propre au site
+.lead {
+  color: $color-muted;
+}
+
+.steps {
+  margin: 0;
+  padding: $space * 3;
+  list-style: none;
+  counter-reset: step;
+  background: $color-surface;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  box-shadow: $shadow;
+
+  li {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    column-gap: $space * 1.5;
+    padding: $space * 1.5 0;
+    counter-increment: step;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $color-border;
+    }
+
+    &::before {
+      content: counter(step);
+      grid-row: span 2;
+      display: grid;
+      place-items: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: $color-primary-soft;
+      color: $color-primary;
+      font-weight: 700;
+    }
+  }
+
+  span {
+    font-size: 0.9375rem;
+    color: $color-muted;
+  }
+}
+
+.project-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: $space * 1.5;
+  padding: $space;
+  border-radius: $radius-sm;
+  background: $color-primary-soft;
+  fill: none;
+  stroke: $color-primary;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: $space * 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-card {
+  position: relative;
+  padding: $space * 3;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-surface;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:hover {
+    border-color: $color-primary;
+    box-shadow: $shadow;
+  }
+
+  h3 {
+    margin-bottom: $space;
+  }
+
+  h3 a {
+    color: $color-ink;
+    text-decoration: none;
+
+    // Toute la carte est cliquable
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  .rate {
+    margin: 0;
+    font-size: 0.9375rem;
+
+    strong {
+      color: $color-primary;
+    }
+  }
+}
+
+.rate-card {
+  padding: $space * 3;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-surface;
+  box-shadow: $shadow;
+}
+
+.rate-card-label {
+  margin: 0;
+  font-weight: 600;
+  color: $color-muted;
+}
+
+.rate-card-value {
+  margin: 0 0 $space * 2;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: $color-primary;
+}
+
+.facts {
+  margin: 0 0 $space * 2;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    gap: $space * 2;
+    padding: $space 0;
+    border-top: 1px solid $color-border;
+  }
+
+  dt {
+    color: $color-muted;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 600;
+    text-align: right;
+  }
+}
+
+.example {
+  padding: $space * 3;
+  border-left: 4px solid $color-primary;
+  border-radius: 0 $radius $radius 0;
+  background: $color-surface-alt;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.check-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    margin-bottom: $space * 1.5;
+    padding-left: $space * 4;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0.3em;
+      left: 0;
+      width: 18px;
+      height: 10px;
+      border-bottom: 3px solid $color-success;
+      border-left: 3px solid $color-success;
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.partner-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: $space * 2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    place-items: center;
+    padding: $space * 2;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-surface;
+  }
+}
+
+.faq {
+  details {
+    padding: $space * 2 0;
+    border-bottom: 1px solid $color-border;
+  }
+
+  summary {
+    font-weight: 600;
+    color: $color-ink;
+    cursor: pointer;
+  }
+
+  details p {
+    margin: $space * 1.5 0 0;
+    color: $color-muted;
+  }
+}
+
+.legal-notice {
+  display: flex;
+  align-items: flex-start;
+  gap: $space * 1.5;
+  margin: 0;
+  padding: $space * 2;
+  border-radius: $radius-sm;
+  background: $color-warning-soft;
+  color: $color-warning;
+  font-weight: 600;
+
+  svg {
+    flex: none;
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+}
+
+.prose {
+  padding-top: $space * 3;
+  padding-bottom: $space * 7;
+
+  h2 {
+    margin-top: $space * 5;
+  }
+
+  ul {
+    padding-left: $space * 3;
+  }
+
+  li {
+    margin-bottom: $space;
+  }
+}
+
+.data-table {
+  display: block;
+  width: 100%;
+  margin: $space * 2 0;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+
+  caption {
+    margin-bottom: $space;
+    text-align: left;
+    color: $color-muted;
+  }
+
+  th,
+  td {
+    padding: $space * 1.5;
+    border-bottom: 1px solid $color-border;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  thead th {
+    font-weight: 600;
+    color: $color-muted;
+  }
+}

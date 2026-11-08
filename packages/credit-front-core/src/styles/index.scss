@@ -1,0 +1,5 @@
+// Feuille commune des applications React : importée par chaque main.tsx
+// (import 'credit-front-core/src/styles/index.scss'). Les applications utilisent les jetons avec
+// @use 'credit-front-core/src/styles/tokens' as *;
+@use 'base';
+@use 'components';

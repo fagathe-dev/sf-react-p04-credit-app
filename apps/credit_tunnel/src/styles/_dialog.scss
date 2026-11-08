@@ -1,0 +1,64 @@
+@use 'credit-front-core/src/styles/tokens' as *;
+
+// ==========================================================================
+// Component: ConfirmDialog (components/ui/ConfirmDialog.tsx) — <dialog> natif modal
+// ==========================================================================
+
+.confirm-dialog {
+  // 1. Component Tokens
+  --dialog-width: 480px;
+  --dialog-radius: #{$radius};
+  --dialog-backdrop: rgba(17, 24, 39, 0.5);
+
+  // 2. Box Model : aucune marge intérieure (voir ConfirmDialog : clic sur le fond)
+  inline-size: min(var(--dialog-width), calc(100% - #{$space * 4}));
+  max-inline-size: none;
+  padding: 0;
+  border: 0;
+  border-radius: var(--dialog-radius);
+
+  // 3. Couleurs
+  background-color: $color-surface;
+  color: $color-text;
+  box-shadow: $shadow;
+
+  &::backdrop {
+    background-color: var(--dialog-backdrop);
+  }
+
+  h2 {
+    margin: 0 0 $space;
+    font-size: 1.25rem;
+    line-height: 1.3;
+    color: $color-ink;
+  }
+}
+
+.confirm-dialog-content {
+  padding: $space * 3;
+}
+
+.confirm-dialog-body {
+  color: $color-muted;
+
+  p {
+    margin: 0;
+  }
+}
+
+.confirm-dialog-actions {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-end;
+  gap: $space * 1.5;
+  margin-top: $space * 3;
+
+  // Mobile : boutons pleine largeur, action principale au-dessus
+  .btn {
+    flex: 1 1 auto;
+
+    @include from(480px) {
+      flex: 0 0 auto;
+    }
+  }
+}

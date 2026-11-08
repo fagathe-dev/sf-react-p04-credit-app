@@ -1,0 +1,12 @@
+{% extends '@CorePhp/layout.html.twig' %}
+
+{% block preheader %}Conformément à votre accord, votre demande a été transmise à nos partenaires.{% endblock %}
+
+{% block content %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Bonjour ' ~ dto.recipientName|e ~ ',', level: 'h2', spacing: 16 } only %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Comme vous l\'avez accepté, votre demande a été transmise aux établissements financiers partenaires pour ce projet :', spacing: 8 } only %}
+  {% include 'emails/dossier/_summary.html.twig' with { dto: dto } only %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: '<strong>' ~ dto.partnerNames|map(name => name|e)|join(', ') ~ '</strong>', spacing: 24 } only %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Ils n\'utilisent vos données que pour étudier cette demande. Vous pouvez à tout moment retirer votre consentement de rappel depuis votre espace client.', spacing: 24 } only %}
+  {% include '@CorePhp/components/_button.html.twig' with { label: 'Accéder à mon espace', url: dto.dossierUrl, spacing: 24 } only %}
+{% endblock %}

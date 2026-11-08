@@ -1,0 +1,4 @@
+# Domaine métier partagé (packages/credit-core)
+credit_core:
+    # credit_api sert /assets/logos/ : partnerLogo = DEFAULT_URI + champ « logo » du JSON du partenaire
+    asset_base_uri: '%env(DEFAULT_URI)%'

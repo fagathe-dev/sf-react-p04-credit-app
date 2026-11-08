@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=../vendor/symfony/dependency-injection/Loader/schema/services.schema.json
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/Kernel.php'
+            # Objets de valeur et DTO (pas des services)
+            - '../src/DTO/'
+            - '../src/Entity/'
+            - '../src/Enum/'
+            - '../src/Crm/Priority/DossierMetrics.php'
+            - '../src/Crm/Priority/PriorityAssessment.php'
+            - '../src/ClientSpace/RegistrationOutcome.php'
+            - '../src/Http/PayloadResult.php'
+            - '../src/Notification/DossierMailDto.php'
+            - '../src/Mailer/OtpCodeMailDto.php'
+            # Outils des fixtures, instanciés par AppFixtures
+            - '../src/DataFixtures/Scenario/'

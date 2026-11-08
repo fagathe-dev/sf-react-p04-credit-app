@@ -1,0 +1,31 @@
+<footer class="site-footer">
+    <div class="container">
+        {% include 'partials/_legal_notice.html.twig' %}
+        <div class="footer-grid">
+            <div>
+                <p class="footer-title">{{ app_name }}</p>
+                <p class="muted">Comparateur de crédit à la consommation. Service réservé aux résidents de France métropolitaine et de Corse, âgés de 18 à 80 ans.</p>
+            </div>
+            <nav aria-label="Projets">
+                <p class="footer-title">Projets</p>
+                <ul>
+                    {% for page in project_pages() %}
+                        <li><a href="{{ path('app_project_show', {slug: page.slug}) }}">{{ page.projectType.label }}</a></li>
+                    {% endfor %}
+                </ul>
+            </nav>
+            <nav aria-label="Informations">
+                <p class="footer-title">Informations</p>
+                <ul>
+                    <li><a href="{{ path('app_guide_credit_conso') }}">Guide du crédit à la consommation</a></li>
+                    <li><a href="{{ simulator_url() }}">Simulateur rapide</a></li>
+                </ul>
+            </nav>
+            <nav aria-label="Informations légales">
+                <p class="footer-title">Informations légales</p>
+                {% include 'partials/_legal_links.html.twig' %}
+            </nav>
+        </div>
+        <p class="copyright muted">&copy; {{ 'now'|date('Y') }} {{ app_name }}</p>
+    </div>
+</footer>

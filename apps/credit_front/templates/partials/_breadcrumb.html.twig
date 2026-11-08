@@ -1,0 +1,10 @@
+{#
+    Fil d'Ariane « Accueil / {current} » : composant breadcrumb du design-system.
+    Paramètre : current (libellé de la page courante).
+#}
+<nav class="container breadcrumb-nav" aria-label="Fil d'Ariane">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{{ path('app_home') }}">Accueil</a></li>
+        <li class="breadcrumb-item active" aria-current="page">{{ current }}</li>
+    </ol>
+</nav>

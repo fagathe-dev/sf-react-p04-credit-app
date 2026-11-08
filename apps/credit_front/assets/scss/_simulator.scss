@@ -1,0 +1,247 @@
+@use 'tokens' as *;
+
+// Simulateur rapide (templates/simulator/index.html.twig, assets/ts/components/quickSimulator.ts)
+
+.section-tight {
+  padding: $space * 3 0 $space * 7;
+}
+
+.simulator {
+  display: grid;
+  gap: $space * 3;
+
+  @include from(960px) {
+    grid-template-columns: 3fr 2fr;
+    align-items: start;
+  }
+}
+
+.simulator-form,
+.simulator-result {
+  padding: $space * 3;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-surface;
+}
+
+.simulator-result {
+  display: grid;
+  gap: $space * 2;
+  box-shadow: $shadow;
+
+  @include from(960px) {
+    position: sticky;
+    top: 88px;
+  }
+
+  > p {
+    margin: 0;
+  }
+}
+
+// Champs (le site vitrine n'a pas de formulaires ailleurs)
+.field {
+  display: grid;
+  align-content: start;
+  gap: $space * 0.75;
+  margin: 0 0 $space * 2.5;
+
+  label,
+  legend {
+    font-weight: 600;
+    color: $color-ink;
+  }
+
+  input:not([type='radio']),
+  select {
+    inline-size: 100%;
+    block-size: 48px;
+    padding: 0 $space * 1.5;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    font: inherit;
+    color: $color-ink;
+  }
+}
+
+.field-hint {
+  margin: 0;
+  font-size: 0.875rem;
+  color: $color-muted;
+}
+
+.form-row {
+  display: grid;
+  align-items: start;
+  gap: 0 $space * 2;
+
+  @include from(640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.input-suffix {
+  position: relative;
+
+  input {
+    padding-inline-end: $space * 4;
+  }
+
+  span {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-end: $space * 1.5;
+    transform: translateY(-50%);
+    color: $color-muted;
+  }
+}
+
+// Choix du projet : radios natifs présentés en cartes
+.project-choice {
+  padding: 0;
+  border: 0;
+
+  legend {
+    margin-bottom: $space;
+  }
+}
+
+.project-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space;
+
+  @include from(640px) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  @include from(1100px) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}
+
+.project-option {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  padding: $space * 1.5;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  text-align: center;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .project-icon {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    border-color: $color-primary;
+  }
+
+  &:has(input:checked) {
+    border-color: $color-primary;
+    background: $color-primary-soft;
+  }
+
+  &:has(input:focus-visible) {
+    @include focus-ring;
+  }
+}
+
+.project-option-label {
+  font-weight: 600;
+  color: $color-ink;
+}
+
+.project-option-rate {
+  font-size: 0.8125rem;
+  color: $color-muted;
+}
+
+// Résultat
+.result-label {
+  font-weight: 600;
+  color: $color-muted;
+}
+
+.result-value {
+  margin: 0;
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: $color-primary;
+
+  small {
+    font-size: 1rem;
+    font-weight: 500;
+    color: $color-muted;
+  }
+}
+
+.result-facts {
+  margin: $space * 1.5 0;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+    gap: $space * 2;
+    padding: $space 0;
+    border-top: 1px solid $color-border;
+  }
+
+  dt {
+    color: $color-muted;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 700;
+  }
+}
+
+.result-warning {
+  padding: $space * 1.5;
+  border-radius: $radius-sm;
+  background: $color-warning-soft;
+  color: $color-warning;
+}
+
+// CTA des simulateurs : en petit écran, fixé en bas de l'écran (toujours accessible pendant la saisie)
+.sticky-cta {
+  @media (max-width: 767.98px) {
+    position: fixed;
+    inset-inline: 0;
+    inset-block-end: 0;
+    z-index: 20;
+    padding: $space * 1.5 $space * 2 calc(#{$space * 1.5} + env(safe-area-inset-bottom));
+    border-top: 1px solid $color-border;
+    background: $color-surface;
+    box-shadow: 0 -6px 20px color-mix(in srgb, var(--ds-color-shadow) 8%, transparent);
+
+    .btn {
+      inline-size: 100%;
+    }
+  }
+}
+
+// Réserve la place du CTA fixe pour ne masquer ni le contenu ni le pied de page
+@media (max-width: 767.98px) {
+  body:has(.sticky-cta) {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+  }
+}
+
+.btn-block {
+  inline-size: 100%;
+}

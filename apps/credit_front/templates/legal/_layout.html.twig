@@ -1,0 +1,29 @@
+{#
+    Gabarit commun des pages légales (statiques, contenu en dur).
+    Chaque page définit les blocs legal_title, legal_intro et legal_content.
+#}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'partials/_breadcrumb.html.twig' with {current: block('legal_title')} only %}
+
+    <article class="container narrow legal-container">
+        <header class="legal-header">
+            <h1>{% block legal_title %}{% endblock %}</h1>
+            <p class="legal-demo" role="note">
+                <strong>Projet de démonstration.</strong>
+                Ce site est un projet portfolio non commercial édité par Frédérick AGATHE. Les établissements partenaires et leurs offres sont fictifs&nbsp;: aucun crédit ne sera octroyé.
+            </p>
+            {% block legal_intro %}{% endblock %}
+        </header>
+
+        <div class="legal-content">
+            {% block legal_content %}{% endblock %}
+        </div>
+
+        <nav class="legal-nav" aria-label="Pages légales">
+            <p class="footer-title">Informations légales</p>
+            {% include 'partials/_legal_links.html.twig' %}
+        </nav>
+    </article>
+{% endblock %}

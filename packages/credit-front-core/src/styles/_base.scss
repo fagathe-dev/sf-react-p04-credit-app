@@ -1,0 +1,457 @@
+@use 'tokens' as *;
+
+// Base commune : reset, typographie, conteneurs, boutons, champs, cartes, alertes.
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-sans;
+  font-size: 1rem;
+  line-height: 1.55;
+  color: $color-text;
+  background: $color-surface-alt;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 $space * 2;
+  line-height: 1.25;
+  color: $color-ink;
+}
+
+h1 {
+  font-size: clamp(1.6rem, 3vw, 2.1rem);
+}
+
+h2 {
+  font-size: 1.35rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+}
+
+p {
+  margin: 0 0 $space * 2;
+}
+
+a {
+  color: $color-primary;
+}
+
+img {
+  max-width: 100%;
+}
+
+:focus-visible {
+  outline: 3px solid rgba($color-primary, 0.45);
+  outline-offset: 2px;
+}
+
+.container {
+  width: 100%;
+  max-width: $container;
+  margin: 0 auto;
+  padding: 0 $space * 2;
+}
+
+.narrow {
+  max-width: 968px;
+}
+
+.muted {
+  color: $color-muted;
+}
+
+.small {
+  font-size: 0.875rem;
+}
+
+.lead {
+  font-size: 1.0625rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// Boutons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $space;
+  min-height: 44px;
+  padding: 0 $space * 2.5;
+  border: 1px solid transparent;
+  border-radius: $radius-sm;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.btn-primary {
+  background: $color-primary;
+  color: #fff;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-dark;
+    color: #fff;
+  }
+}
+
+// Contour (outline du design-system) : action secondaire visible
+.btn-outline {
+  background: $color-surface;
+  border-color: $color-border-strong;
+  color: $color-ink;
+
+  &:hover:not(:disabled) {
+    border-color: $color-primary;
+    color: $color-primary;
+  }
+}
+
+// Ghost (design-system) : transparent, sans bordure, pour les actions discrètes
+.btn-ghost {
+  background: transparent;
+  color: $color-primary;
+
+  &:hover:not(:disabled) {
+    background: $color-primary-soft;
+    color: $color-primary-dark;
+  }
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.btn-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  color: $color-primary;
+  text-decoration: underline;
+  cursor: pointer;
+
+  &:disabled {
+    color: $color-muted;
+    text-decoration: none;
+    cursor: default;
+  }
+}
+
+// Champs
+// Hauteur de contrôle unique : un input et un select voisins restent alignés
+$control-height: 48px;
+
+.field {
+  display: grid;
+  // Pas d'étirement des lignes : dans une ligne de champs, un champ sans aide garde son libellé
+  // et son contrôle alignés sur ceux du champ voisin qui en a une.
+  align-content: start;
+  gap: $space * 0.75;
+  margin-bottom: $space * 2.5;
+
+  label,
+  legend,
+  .field-label {
+    font-weight: 600;
+    color: $color-ink;
+  }
+
+  input:not([type='checkbox'], [type='radio']),
+  select {
+    block-size: $control-height;
+  }
+
+  input,
+  select,
+  textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: $space $space * 1.5;
+    border: 1px solid $color-border-strong;
+    border-radius: $radius-sm;
+    background: $color-surface;
+    font: inherit;
+    color: $color-ink;
+
+    &[aria-invalid='true'] {
+      border-color: $color-danger;
+    }
+  }
+
+  textarea {
+    min-height: 120px;
+    resize: vertical;
+  }
+}
+
+.field-error {
+  margin: 0;
+  font-size: 0.875rem;
+  color: $color-danger;
+}
+
+.field-hint {
+  margin: 0;
+  font-size: 0.875rem;
+  color: $color-muted;
+}
+
+// Interrupteur (case à cocher role="switch") : tunnel et espace client
+.toggle {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: $space * 1.5;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .toggle-track {
+    position: relative;
+    flex: none;
+    width: 44px;
+    height: 24px;
+    margin-top: 1px;
+    border-radius: 999px;
+    background: $color-border-strong;
+    transition: background-color 0.15s ease;
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #fff;
+      transition: transform 0.15s ease;
+    }
+  }
+
+  input:checked + .toggle-track {
+    background: $color-primary;
+
+    &::after {
+      transform: translateX(20px);
+    }
+  }
+
+  input:focus-visible + .toggle-track {
+    outline: 3px solid rgba($color-primary, 0.45);
+    outline-offset: 2px;
+  }
+
+  input:disabled + .toggle-track {
+    opacity: 0.6;
+  }
+}
+
+// Cartes et alertes
+.card {
+  padding: $space * 3;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-surface;
+}
+
+.alert {
+  display: flex;
+  gap: $space * 1.5;
+  align-items: flex-start;
+  margin-bottom: $space * 2;
+  padding: $space * 2;
+  border-radius: $radius-sm;
+
+  svg {
+    flex: none;
+    width: 20px;
+    height: 20px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.alert-info {
+  background: $color-primary-soft;
+  color: $color-primary-dark;
+}
+
+.alert-success {
+  background: $color-success-soft;
+  color: $color-success;
+}
+
+.alert-danger {
+  background: $color-danger-soft;
+  color: $color-danger;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px $space;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  background: $color-surface-alt;
+  color: $color-muted;
+}
+
+.badge-instant_offers {
+  background: $color-success-soft;
+  color: $color-success;
+}
+
+.badge-advisor_callback_needed {
+  background: $color-warning-soft;
+  color: $color-warning;
+}
+
+.badge-hard_reject {
+  background: $color-danger-soft;
+  color: $color-danger;
+}
+
+// Avancement du dossier (DossierWorkflowStatus) : espace client et back-office
+.badge-quotes_generated {
+  background: $color-primary-soft;
+  color: $color-primary-dark;
+}
+
+.badge-no_offer_advisor_queue {
+  background: $color-warning-soft;
+  color: $color-warning;
+}
+
+.badge-quote_subscribed {
+  background: $color-primary;
+  color: #fff;
+}
+
+.badge-approved {
+  background: $color-success-soft;
+  color: $color-success;
+}
+
+.badge-rejected {
+  background: $color-danger-soft;
+  color: $color-danger;
+}
+
+.page-loading {
+  padding: $space * 6 0;
+  text-align: center;
+  color: $color-muted;
+}
+
+// En-tête d'application
+.app-header {
+  border-bottom: 1px solid $color-border;
+  background: $color-surface;
+}
+
+.app-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space * 2;
+  min-height: 64px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: $space;
+  margin-right: auto;
+  font-weight: 700;
+  color: $color-ink;
+  text-decoration: none;
+
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.app-main {
+  padding: $space * 4 0 $space * 8;
+}
+
+// Liste de faits (libellé / valeur) et lien de retour : espace client et back-office
+.facts-list {
+  margin: 0;
+
+  div {
+    padding: $space 0;
+    border-top: 1px solid $color-border;
+  }
+
+  dt {
+    font-size: 0.8125rem;
+    color: $color-muted;
+  }
+
+  dd {
+    margin: 0;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+  }
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: $space;
+  font-weight: 600;
+  text-decoration: none;
+
+  svg {
+    width: 18px;
+  }
+}
+
+// Titre de page avec badge d'avancement : espace client et back-office
+.dossier-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space * 1.5;
+
+  h1 {
+    margin: 0;
+  }
+}

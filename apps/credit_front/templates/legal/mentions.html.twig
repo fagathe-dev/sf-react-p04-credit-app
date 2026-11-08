@@ -1,0 +1,41 @@
+{% extends 'legal/_layout.html.twig' %}
+
+{% block legal_title %}Mentions légales{% endblock %}
+
+{% block legal_content %}
+    <section>
+        <h2>Éditeur</h2>
+        <p>
+            Frédérick AGATHE, développeur web fullstack.<br>
+            E-mail&nbsp;: <a href="mailto:agathefrederick@gmail.com">agathefrederick@gmail.com</a>
+        </p>
+        <p>Le directeur de la publication est l'éditeur.</p>
+    </section>
+
+    <section>
+        <h2>Hébergement</h2>
+        <p>
+            o2switch<br>
+            Chemin des Pardiaux, 63000 Clermont-Ferrand, France<br>
+            Téléphone&nbsp;: <a href="tel:+33444446040">04 44 44 60 40</a>
+        </p>
+    </section>
+
+    <section>
+        <h2>Statut d'intermédiaire (fictif)</h2>
+        <p>Dans un cadre réel, un comparateur qui met en relation des emprunteurs avec des établissements de crédit exerce une activité d'intermédiaire en opérations de banque et en services de paiement (IOBSP). Son inscription au registre unique des intermédiaires tenu par l'ORIAS (<a href="https://www.orias.fr" target="_blank" rel="noopener noreferrer">www.orias.fr</a>) est alors obligatoire.</p>
+        <p>Numéro d'immatriculation ORIAS (fictif)&nbsp;: <strong>00 000 000</strong>.</p>
+        <p>Le comparateur n'est pas prêteur&nbsp;: dans un cadre réel, l'offre de crédit est émise par l'établissement partenaire après étude du dossier. Établissements partenaires (fictifs)&nbsp;:</p>
+        <ul>
+            {% for partner in partners %}
+                <li>{{ partner.name }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section>
+        <h2>Avertissement</h2>
+        <p>Ce site est un projet de démonstration technique (portfolio), sans activité commerciale. Aucun crédit ne sera octroyé et aucune demande n'est transmise à un établissement réel.</p>
+        {% include 'partials/_legal_notice.html.twig' %}
+    </section>
+{% endblock %}

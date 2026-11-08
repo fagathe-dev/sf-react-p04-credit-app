@@ -1,0 +1,180 @@
+@use 'credit-front-core/src/styles/tokens' as *;
+
+// Champs spécifiques au tunnel
+
+// Ligne de champs : deux colonnes égales, champs alignés en haut (libellés et contrôles sur la même ligne,
+// les aides et erreurs s'étendent en dessous sans décaler le voisin). Un champ seul garde une demi-largeur.
+.field-row {
+  display: grid;
+  align-items: start;
+  gap: 0 $space * 2;
+
+  @include from(640px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// Intertitre à l'intérieur d'une étape (étape co-emprunteur)
+.step-section {
+  margin: $space * 1.5 0 $space * 2;
+  padding-top: $space * 2;
+  border-top: 1px solid $color-border;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: $color-muted;
+
+  &:first-of-type {
+    padding-top: 0;
+    border-top: 0;
+  }
+}
+
+.money-input {
+  position: relative;
+
+  input {
+    padding-right: $space * 4;
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    right: $space * 1.5;
+    transform: translateY(-50%);
+    color: $color-muted;
+  }
+}
+
+.choice-field {
+  margin: 0 0 $space * 2.5;
+  padding: 0;
+  border: 0;
+
+  legend {
+    margin-bottom: $space;
+  }
+}
+
+.choice-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $space;
+
+  &.cols-3 {
+    @include from(640px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  &.cols-5 {
+    @include from(640px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @include from(900px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  }
+}
+
+.choice-card {
+  position: relative;
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  padding: $space * 1.5;
+  border: 1px solid $color-border-strong;
+  border-radius: $radius-sm;
+  background: $color-surface;
+  text-align: center;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  &:hover {
+    border-color: $color-primary;
+  }
+
+  &:has(input:focus-visible) {
+    outline: 3px solid rgba($color-primary, 0.45);
+    outline-offset: 2px;
+  }
+
+  &.is-selected {
+    border-color: $color-primary;
+    background: $color-primary-soft;
+  }
+}
+
+.choice-icon {
+  color: $color-primary;
+
+  svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.choice-label {
+  font-weight: 600;
+  color: $color-ink;
+}
+
+.choice-description {
+  font-size: 0.8125rem;
+  color: $color-muted;
+}
+
+.toggle-field {
+  margin-bottom: $space * 2.5;
+}
+
+.checkbox-field label {
+  display: flex;
+  align-items: flex-start;
+  gap: $space * 1.5;
+  font-weight: 400;
+  cursor: pointer;
+
+  input {
+    flex: none;
+    width: 20px;
+    min-height: 20px;
+    height: 20px;
+    margin-top: 2px;
+    accent-color: $color-primary;
+  }
+}
+
+.subsection {
+  margin: $space * 2 0;
+  padding: $space * 2;
+  border: 1px solid $color-border;
+  border-radius: $radius-sm;
+
+  legend {
+    padding: 0 $space;
+    font-weight: 700;
+    color: $color-ink;
+  }
+}
+
+.optional-line {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: $space * 2;
+  align-items: center;
+}
+
+.add-lines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space;
+  margin-bottom: $space * 2;
+}

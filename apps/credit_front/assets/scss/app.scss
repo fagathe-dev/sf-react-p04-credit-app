@@ -1,0 +1,8 @@
+// Point d'entrée du site vitrine, compilé vers public/css/app.css (npm run compile:scss).
+// Classes courtes et sémantiques, sans BEM. Les fichiers préfixés par _ sont des partiels.
+@use 'base';
+@use 'layout';
+@use 'components';
+@use 'estimator';
+@use 'simulator';
+@use 'legal';

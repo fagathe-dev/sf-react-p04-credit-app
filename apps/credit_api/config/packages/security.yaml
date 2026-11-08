@@ -1,0 +1,38 @@
+security:
+    # Aucun mot de passe : connexion par code OTP envoyé par e-mail, session JWT en cookie HttpOnly
+    providers:
+        clients:
+            entity: { class: App\Entity\Client, property: id }
+        advisors:
+            entity: { class: App\Entity\Advisor, property: id }
+
+    firewalls:
+        dev:
+            pattern: ^/(_profiler(/|$)|(_wdt|assets|build)/)
+            security: false
+
+        # Back-office conseillers : cookie advisor_session, ROLE_ADVISOR
+        crm:
+            pattern: ^/api/v1/crm
+            stateless: true
+            provider: advisors
+            custom_authenticators:
+                - App\Security\AdvisorCookieAuthenticator
+            entry_point: App\Security\AdvisorCookieAuthenticator
+
+        # Comparateur et espace client : cookie client_session, ROLE_CLIENT
+        # POST /compare est public mais lit la session pour reconnaître un client déjà connecté
+        api:
+            pattern: ^/api/v1
+            stateless: true
+            provider: clients
+            custom_authenticators:
+                - App\Security\ClientCookieAuthenticator
+            entry_point: App\Security\ClientCookieAuthenticator
+
+    # Seule la première règle qui correspond s'applique
+    access_control:
+        - { path: ^/api/v1/crm/auth, roles: PUBLIC_ACCESS }
+        - { path: ^/api/v1/crm, roles: ROLE_ADVISOR }
+        - { path: ^/api/v1/me, roles: ROLE_CLIENT }
+        - { path: ^/api/v1, roles: PUBLIC_ACCESS }

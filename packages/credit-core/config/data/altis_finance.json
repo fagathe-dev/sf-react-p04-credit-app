@@ -1,0 +1,118 @@
+{
+  "code": "altis_finance",
+  "name": "Altis Finance",
+  "logo": "/assets/logos/altis.svg",
+  "offers": [
+    {
+      "offerCode": "ALTIS_GREEN_HORIZON",
+      "productName": "Prêt Green Horizon",
+      "projectType": "green_loan",
+      "nominalRate": 2.86,
+      "apr": 2.9,
+      "insuranceRate": 0.3,
+      "referenceAmount": 15000,
+      "referenceDurationMonths": 60,
+      "monthlyInstallment": 268.6,
+      "totalFinancingCost": 1341,
+      "criteria": {
+        "minAmount": 3000,
+        "maxAmount": 75000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 84,
+        "minMonthlyIncome": 2200,
+        "maxDebtRatioPercent": 30.0,
+        "minRemainderToLive": 1000,
+        "minSeniorityMonths": 12,
+        "minRiskGrade": "GRADE_B",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "ALTIS_AUTO_PREMIUM",
+      "productName": "Prêt Auto Premium",
+      "projectType": "auto",
+      "nominalRate": 3.74,
+      "apr": 3.8,
+      "insuranceRate": 0.3,
+      "referenceAmount": 20000,
+      "referenceDurationMonths": 48,
+      "monthlyInstallment": 449.26,
+      "totalFinancingCost": 1804.48,
+      "criteria": {
+        "minAmount": 5000,
+        "maxAmount": 50000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 72,
+        "minMonthlyIncome": 2100,
+        "maxDebtRatioPercent": 30.0,
+        "minRemainderToLive": 1000,
+        "minSeniorityMonths": 12,
+        "minRiskGrade": "GRADE_B",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "ALTIS_TRAVAUX_HABITAT",
+      "productName": "Prêt Travaux Habitat",
+      "projectType": "home_improvement",
+      "nominalRate": 4.02,
+      "apr": 4.1,
+      "insuranceRate": 0.3,
+      "referenceAmount": 25000,
+      "referenceDurationMonths": 72,
+      "monthlyInstallment": 391.36,
+      "totalFinancingCost": 3627.92,
+      "criteria": {
+        "minAmount": 5000,
+        "maxAmount": 75000,
+        "minDurationMonths": 24,
+        "maxDurationMonths": 84,
+        "minMonthlyIncome": 2400,
+        "maxDebtRatioPercent": 32.0,
+        "minRemainderToLive": 1000,
+        "minSeniorityMonths": 12,
+        "minRiskGrade": "GRADE_B",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "ALTIS_TRESO_PRIVILEGE",
+      "productName": "Prêt Trésorerie Privilège",
+      "projectType": "cash_treasury",
+      "nominalRate": 4.51,
+      "apr": 4.6,
+      "insuranceRate": 0.3,
+      "referenceAmount": 10000,
+      "referenceDurationMonths": 36,
+      "monthlyInstallment": 297.51,
+      "totalFinancingCost": 800.36,
+      "criteria": {
+        "minAmount": 3000,
+        "maxAmount": 30000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 60,
+        "minMonthlyIncome": 2500,
+        "maxDebtRatioPercent": 30.0,
+        "minRemainderToLive": 1000,
+        "minSeniorityMonths": 18,
+        "minRiskGrade": "GRADE_B",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT"
+        ]
+      }
+    }
+  ]
+}

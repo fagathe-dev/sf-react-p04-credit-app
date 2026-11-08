@@ -1,0 +1,26 @@
+{% extends 'legal/_layout.html.twig' %}
+
+{% block legal_title %}Conditions Générales d'Utilisation (CGU){% endblock %}
+
+{% block legal_content %}
+    <section>
+        <h2>Objet</h2>
+        <p>Les présentes conditions encadrent l'utilisation du site, qui met à disposition un simulateur de crédit à la consommation et une analyse de solvabilité permettant de comparer les offres d'établissements partenaires fictifs.</p>
+    </section>
+
+    <section>
+        <h2>Engagement de l'utilisateur</h2>
+        <p>L'utilisateur s'engage à saisir des informations financières et personnelles sincères et exactes. Des informations erronées faussent l'analyse de sa solvabilité et les offres proposées.</p>
+    </section>
+
+    <section>
+        <h2>Responsabilité</h2>
+        <p>Les résultats du simulateur et les offres affichées sont fournis à titre indicatif. Ils ne constituent ni une offre de crédit ni un accord de financement&nbsp;: dans un cadre réel, l'octroi du crédit dépend de l'analyse des pièces justificatives par l'établissement prêteur.</p>
+        <p>Ce site est un projet de démonstration&nbsp;: aucun crédit ne sera octroyé.</p>
+    </section>
+
+    <section class="legal-warning">
+        <h2>Avertissement légal</h2>
+        {% include 'partials/_legal_notice.html.twig' %}
+    </section>
+{% endblock %}

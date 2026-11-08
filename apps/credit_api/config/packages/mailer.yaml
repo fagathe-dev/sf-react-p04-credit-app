@@ -1,0 +1,7 @@
+parameters:
+    # Utilisé tant que MAILER_DSN n'est pas défini dans .env.local : aucun e-mail n'est envoyé
+    app.mailer_fallback_dsn: 'null://null'
+
+framework:
+    mailer:
+        dsn: '%env(default:app.mailer_fallback_dsn:MAILER_DSN)%'

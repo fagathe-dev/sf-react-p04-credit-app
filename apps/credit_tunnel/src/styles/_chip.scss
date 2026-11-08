@@ -1,0 +1,149 @@
+@use 'credit-front-core/src/styles/tokens' as *;
+
+// ==========================================================================
+// Component: Chip (components/ui/Chip.tsx) — d'après forms/_chip.scss du design-system
+// --------------------------------------------------------------------------
+// Chip à bascule de 32px (zone cliquable étendue à 44px). Sélection : .is-selected
+// + aria-pressed. Variantes de rôle : surcharge des seuls Component Tokens.
+// ==========================================================================
+
+.chip {
+  // 1. Component Tokens
+  --chip-bg: #{$color-primary-soft};
+  --chip-color: #{$color-primary-dark};
+  --chip-selected-bg: #{$color-primary};
+  --chip-selected-color: #fff;
+  --chip-border-color: transparent;
+  --chip-radius: #{$radius-sm};
+  --chip-height: 32px;
+
+  // 2. Box Model
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: $space * 0.75;
+  block-size: var(--chip-height);
+  padding-inline: $space * 1.5;
+  border: 1px solid var(--chip-border-color);
+  border-radius: var(--chip-radius);
+
+  // Zone tactile minimale de 44px sans changer le rendu
+  &::before {
+    content: '';
+    position: absolute;
+    inset-block: calc((var(--chip-height) - 44px) / 2);
+    inset-inline: 0;
+  }
+
+  // 3. Typographie & Couleurs
+  background-color: var(--chip-bg);
+  color: var(--chip-color);
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  user-select: none;
+
+  // 4. Motion
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease,
+    border-color 0.15s ease;
+
+  // 5. États interactifs
+  &:hover {
+    background-color: color-mix(in srgb, var(--chip-bg), var(--chip-color) 8%);
+  }
+
+  &:active {
+    background-color: color-mix(in srgb, var(--chip-bg), var(--chip-color) 14%);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba($color-primary, 0.45);
+    outline-offset: 2px;
+  }
+
+  &.is-selected,
+  &[aria-pressed='true'] {
+    --chip-bg: var(--chip-selected-bg);
+    --chip-color: var(--chip-selected-color);
+    --chip-border-color: var(--chip-selected-bg);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    pointer-events: none;
+  }
+}
+
+.chip-icon {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+// Variantes de rôle (surcharge uniquement des Component Tokens)
+.chip-primary {
+  --chip-border-color: #{$color-border-strong};
+  --chip-bg: #{$color-surface};
+  --chip-color: #{$color-primary};
+}
+
+.chip-secondary {
+  --chip-border-color: #{$color-border-strong};
+  --chip-bg: #{$color-surface-alt};
+  --chip-color: #{$color-ink};
+  --chip-selected-bg: #{$color-ink};
+}
+
+.chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space;
+}
+
+// Choix unique (ChoiceChips : Oui / Non, civilité) : chips à la hauteur des champs voisins
+.chip-choice {
+  --chip-height: 48px;
+
+  min-inline-size: 88px;
+  justify-content: center;
+  padding-inline: $space * 2.5;
+  font-size: 0.9375rem;
+}
+
+.chip-group.is-invalid .chip {
+  --chip-border-color: #{$color-danger};
+}
+
+// Dates par listes déroulantes : mois + année, ou jour + mois + année
+.date-field {
+  // Un fieldset vaut min-content par défaut : sans ceci, il déborderait de sa colonne
+  min-inline-size: 0;
+  margin-inline: 0;
+  padding: 0;
+  border: 0;
+
+  legend {
+    margin-bottom: $space * 0.75;
+    padding: 0;
+  }
+}
+
+.date-selects {
+  display: grid;
+  gap: $space;
+
+  &.cols-2 {
+    grid-template-columns: 3fr 2fr;
+  }
+
+  &.cols-3 {
+    grid-template-columns: 2fr 3fr 2.5fr;
+  }
+}

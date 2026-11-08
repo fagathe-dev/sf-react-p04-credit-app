@@ -1,0 +1,123 @@
+{
+  "code": "veloce_credit",
+  "name": "Veloce Crédit",
+  "logo": "/assets/logos/veloce.svg",
+  "offers": [
+    {
+      "offerCode": "VELOCE_SOLAIRE_PAC",
+      "productName": "Prêt Solaire & Pompe à chaleur",
+      "projectType": "green_loan",
+      "nominalRate": 3.35,
+      "apr": 3.4,
+      "insuranceRate": 0.35,
+      "referenceAmount": 18000,
+      "referenceDurationMonths": 72,
+      "monthlyInstallment": 276.31,
+      "totalFinancingCost": 2272.32,
+      "criteria": {
+        "minAmount": 4000,
+        "maxAmount": 60000,
+        "minDurationMonths": 24,
+        "maxDurationMonths": 84,
+        "minMonthlyIncome": 1800,
+        "maxDebtRatioPercent": 33.0,
+        "minRemainderToLive": 900,
+        "minSeniorityMonths": 6,
+        "minRiskGrade": "GRADE_B",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "VELOCE_EV_ELECTRIQUE",
+      "productName": "Prêt Véhicule Électrique",
+      "projectType": "green_loan",
+      "nominalRate": 3.15,
+      "apr": 3.2,
+      "insuranceRate": 0.35,
+      "referenceAmount": 25000,
+      "referenceDurationMonths": 60,
+      "monthlyInstallment": 450.89,
+      "totalFinancingCost": 2490.8,
+      "criteria": {
+        "minAmount": 5000,
+        "maxAmount": 65000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 84,
+        "minMonthlyIncome": 1850,
+        "maxDebtRatioPercent": 33.0,
+        "minRemainderToLive": 900,
+        "minSeniorityMonths": 6,
+        "minRiskGrade": "GRADE_B",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "VELOCE_AUTO_ROUTE",
+      "productName": "Prêt Auto Route",
+      "projectType": "auto",
+      "nominalRate": 4.75,
+      "apr": 4.85,
+      "insuranceRate": 0.35,
+      "referenceAmount": 15000,
+      "referenceDurationMonths": 60,
+      "monthlyInstallment": 281.35,
+      "totalFinancingCost": 2143.8,
+      "criteria": {
+        "minAmount": 3000,
+        "maxAmount": 45000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 72,
+        "minMonthlyIncome": 1700,
+        "maxDebtRatioPercent": 32.0,
+        "minRemainderToLive": 900,
+        "minSeniorityMonths": 9,
+        "minRiskGrade": "GRADE_B",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "VELOCE_TRAVAUX_DECO",
+      "productName": "Prêt Travaux Déco",
+      "projectType": "home_improvement",
+      "nominalRate": 4.84,
+      "apr": 4.95,
+      "insuranceRate": 0.35,
+      "referenceAmount": 8000,
+      "referenceDurationMonths": 48,
+      "monthlyInstallment": 183.66,
+      "totalFinancingCost": 927.52,
+      "criteria": {
+        "minAmount": 2500,
+        "maxAmount": 40000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 72,
+        "minMonthlyIncome": 1700,
+        "maxDebtRatioPercent": 32.0,
+        "minRemainderToLive": 900,
+        "minSeniorityMonths": 6,
+        "minRiskGrade": "GRADE_B",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    }
+  ]
+}

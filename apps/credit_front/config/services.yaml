@@ -1,0 +1,15 @@
+# yaml-language-server: $schema=../vendor/symfony/dependency-injection/Loader/schema/services.schema.json
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/Kernel.php'
+            # Objets de valeur (pas des services)
+            - '../src/Seo/SeoPage.php'
+            - '../src/Service/ProjectPricing.php'

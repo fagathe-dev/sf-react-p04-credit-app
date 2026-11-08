@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <section class="page-hero">
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                <p class="eyebrow">Crédit à la consommation</p>
+                <h1>Comparez les offres de 5 établissements partenaires en quelques minutes</h1>
+                <p class="lead">Une seule demande, des offres calculées pour votre situation : mensualité, TAEG et coût total, sans engagement.</p>
+                <div class="actions">
+                    <a class="btn btn-primary" href="{{ tunnel_url() }}">Comparer les offres</a>
+                    <a class="btn btn-outline-primary" href="{{ simulator_url() }}">Simuler une mensualité</a>
+                </div>
+            </div>
+            <ol class="steps" aria-label="Comment ça marche">
+                <li><strong>Décrivez votre projet</strong><span>Montant, durée et situation, étape par étape.</span></li>
+                <li><strong>Obtenez vos offres</strong><span>Calculées pour votre profil, triées par TAEG.</span></li>
+                <li><strong>Retrouvez votre dossier</strong><span>Dans votre espace client, accessible par code e-mail.</span></li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Quel est votre projet ?</h2>
+            <ul class="project-grid">
+                {% for page in pages %}
+                    {% set rate = pricing[page.projectType.value] ?? null %}
+                    <li class="project-card">
+                        {% include 'partials/icons/_project.html.twig' with {project: page.projectType} only %}
+                        <h3><a href="{{ path('app_project_show', {slug: page.slug}) }}">{{ page.projectType.label }}</a></h3>
+                        <p class="muted">{{ page.tagline }}</p>
+                        {% if rate %}
+                            <p class="rate">TAEG à partir de <strong>{{ rate.fromAprBps|bps }}</strong></p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container two-columns">
+            <div>
+                <h2>Le crédit à la consommation, simplement</h2>
+                <p>Un crédit à la consommation finance un projet personnel de quelques centaines à plusieurs dizaines de milliers d'euros, remboursé par mensualités fixes. Le taux annuel effectif global (TAEG) permet de comparer les offres entre elles.</p>
+                <p>Notre comparateur vérifie pour chaque offre votre taux d'endettement après la nouvelle mensualité et le reste à vivre de votre foyer. Si votre demande ne passe pas telle quelle, il cherche un montant plus bas ou une durée plus longue.</p>
+                <p><a href="{{ path('app_guide_credit_conso') }}">Lire le guide du crédit à la consommation</a></p>
+            </div>
+            <div>
+                <h2>Nos partenaires</h2>
+                <ul class="partner-list">
+                    {% for partner in partners %}
+                        <li><img src="{{ partner_logo(partner.logo) }}" alt="{{ partner.name }}" width="160" height="38" loading="lazy"></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}

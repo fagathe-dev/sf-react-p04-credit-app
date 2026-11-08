@@ -1,0 +1,11 @@
+{# Liens vers les pages légales : pied de page et bas des pages légales (mêmes chemins que le bandeau du tunnel). #}
+<ul class="legal-links">
+    {% for route, label in {
+        app_legal_mentions: 'Mentions légales',
+        app_legal_privacy: 'Données personnelles',
+        app_legal_comparator: 'Fonctionnement du comparateur',
+        app_legal_cgu: 'CGU',
+    } %}
+        <li><a href="{{ path(route) }}"{% if app.current_route == route %} aria-current="page"{% endif %}>{{ label }}</a></li>
+    {% endfor %}
+</ul>

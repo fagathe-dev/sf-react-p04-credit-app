@@ -1,0 +1,11 @@
+twig:
+    file_name_pattern: "*.twig"
+    globals:
+        app_name: "%env(APP_NAME)%"
+        DEFAULT_URI: "%env(DEFAULT_URI)%"
+        # Design-system (sf-p05-design-system), sans « / » final : {{ design_system_url }}/css/ds-ui-kit.css
+        design_system_url: "%env(DESIGN_SYSTEM_URL)%"
+
+when@test:
+    twig:
+        strict_variables: true

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{#
+    Thème clair par défaut, sans sélecteur de thème. Le script du design-system (js/main.js) suit sinon le réglage
+    de l'appareil (mode « auto ») : on lui fournit la préférence « light » (clé ds-theme) avant son chargement.
+#}
+<html lang="fr" data-ui-theme="light">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+        <script>
+            try {
+                if (!localStorage.getItem('ds-theme')) localStorage.setItem('ds-theme', 'light');
+            } catch (e) {}
+        </script>
+        {% block seo %}
+            <title>{{ seo.title }} | {{ app_name }}</title>
+            <meta name="description" content="{{ seo.description }}">
+            <meta name="robots" content="{{ seo.robots }}">
+            <link rel="canonical" href="{{ seo.canonicalUrl }}">
+            <meta property="og:type" content="{{ seo.ogType }}">
+            <meta property="og:title" content="{{ seo.title }}">
+            <meta property="og:description" content="{{ seo.description }}">
+            <meta property="og:url" content="{{ seo.canonicalUrl }}">
+            <meta property="og:site_name" content="{{ app_name }}">
+            <meta property="og:locale" content="fr_FR">
+            {% for block in seo.jsonLd %}
+                <script type="application/ld+json">{{ block|json_encode(constant('JSON_UNESCAPED_SLASHES') b-or constant('JSON_UNESCAPED_UNICODE') b-or constant('JSON_HEX_TAG'))|raw }}</script>
+            {% endfor %}
+        {% endblock %}
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 32 32%22><rect width=%2232%22 height=%2232%22 rx=%228%22 fill=%22%231d4ed8%22/><path d=%22M8 21l5-6 4 3 6-8%22 fill=%22none%22 stroke=%22white%22 stroke-width=%223%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/></svg>">
+        {# Design-system (DESIGN_SYSTEM_URL) : icônes et UI kit, chargés avant les styles propres au site qui s'appuient sur ses jetons --ds-* #}
+        <link rel="preconnect" href="{{ design_system_url }}" crossorigin>
+        <link rel="stylesheet" href="{{ design_system_url }}/assets/ds-icons.css">
+        <link rel="stylesheet" href="{{ design_system_url }}/css/ds-ui-kit.css">
+        {# Styles et scripts propres au site, compilés par npm (apps/credit_front/scripts/compile-*.js) : npm run compile / npm run dev #}
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        {% block javascripts %}
+            <script type="module" src="{{ design_system_url }}/js/main.js"></script>
+            <script type="module" src="{{ asset('js/main.js') }}"></script>
+        {% endblock %}
+    </head>
+    <body>
+        <a class="skip-link" href="#contenu">Aller au contenu</a>
+        {% include 'partials/_header.html.twig' %}
+        <main id="contenu">
+            {% block body %}{% endblock %}
+        </main>
+        {% include 'partials/_footer.html.twig' %}
+    </body>
+</html>

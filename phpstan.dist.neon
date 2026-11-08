@@ -1,0 +1,10 @@
+# Domaine (credit-core) et API : chargés avec l'autoloader de credit_api.
+# Le site vitrine a sa propre configuration (phpstan.front.neon) : deux autoloaders Composer
+# ne peuvent pas être chargés dans le même processus.
+parameters:
+    level: 6
+    paths:
+        - packages/credit-core/src
+        - apps/credit_api/src
+    bootstrapFiles:
+        - apps/credit_api/vendor/autoload.php

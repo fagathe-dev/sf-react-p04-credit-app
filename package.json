@@ -1,0 +1,25 @@
+{
+  "name": "credit-platform",
+  "private": true,
+  "description": "Comparateur de crédit à la consommation : workspaces npm (applications React, assets du site vitrine, package partagé credit-front-core)",
+  "workspaces": [
+    "packages/credit-front-core",
+    "apps/credit_tunnel",
+    "apps/credit_client",
+    "apps/credit_crm",
+    "apps/credit_front"
+  ],
+  "scripts": {
+    "dev:tunnel": "npm run dev --workspace credit_tunnel",
+    "dev:client": "npm run dev --workspace credit_client",
+    "dev:crm": "npm run dev --workspace credit_crm",
+    "dev:front": "npm run dev --workspace credit_front",
+    "build": "npm run build --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present"
+  },
+  "allowScripts": {
+    "esbuild": true,
+    "@parcel/watcher": false
+  }
+}

@@ -1,0 +1,7 @@
+# Site vitrine (credit_front), avec son propre autoloader
+parameters:
+    level: 6
+    paths:
+        - apps/credit_front/src
+    bootstrapFiles:
+        - apps/credit_front/vendor/autoload.php

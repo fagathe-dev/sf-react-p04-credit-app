@@ -1,0 +1,36 @@
+// Jetons du site vitrine, branchés sur les System Tokens du design-system (ds-ui-kit.css, chargé avant app.css
+// par base.html.twig depuis DESIGN_SYSTEM_URL). Les composants propres au site lisent ces alias : pour changer
+// une couleur, on change le design-system, pas ce fichier.
+// Ce sont des var() CSS : pas de fonctions de couleur Sass dessus, utiliser color-mix() côté CSS.
+$color-primary: var(--ds-color-primary);
+$color-primary-dark: var(--ds-color-on-primary-container);
+$color-primary-soft: var(--ds-color-primary-container);
+$color-ink: var(--ds-color-on-surface);
+$color-text: var(--ds-color-on-surface);
+$color-muted: var(--ds-color-on-surface-variant);
+$color-border: var(--ds-color-outline-variant);
+$color-surface: var(--ds-surface);
+$color-surface-alt: var(--ds-surface-container);
+$color-success: var(--ds-color-success);
+$color-warning-soft: var(--ds-color-warning-container);
+$color-warning: var(--ds-color-warning);
+
+$font-sans: var(--ds-font-sans);
+$radius-sm: var(--ds-radius-sm);
+$radius: var(--ds-radius-lg);
+// Valeur Sass (calculs $space * n) : même pas que l'échelle --ds-space-* (0.5rem)
+$space: 8px;
+$container: 1120px;
+$shadow: var(--ds-shadow-md);
+
+@mixin from($width) {
+  @media (min-width: $width) {
+    @content;
+  }
+}
+
+// Anneau de focus du design-system (mixin focus-ring)
+@mixin focus-ring {
+  outline: var(--ds-focus-ring-width) solid var(--ds-focus-ring-color);
+  outline-offset: var(--ds-focus-ring-offset);
+}

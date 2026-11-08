@@ -1,0 +1,14 @@
+{% extends '@CorePhp/layout.html.twig' %}
+
+{% block preheader %}Vos offres de crédit sont prêtes : choisissez celle qui vous convient.{% endblock %}
+
+{% block content %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Bonjour ' ~ dto.recipientName|e ~ ',', level: 'h2', spacing: 16 } only %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Vos offres pour ce projet vous attendent toujours :', spacing: 8 } only %}
+  {% include 'emails/dossier/_summary.html.twig' with { dto: dto } only %}
+  {% if dto.bestOfferLabel is not null %}
+    {% include '@CorePhp/components/_text.html.twig' with { content: 'Meilleure offre : <strong>' ~ dto.bestOfferLabel ~ '</strong>.', spacing: 16 } only %}
+  {% endif %}
+  {% include '@CorePhp/components/_text.html.twig' with { content: 'Elles restent valables jusqu\'au ' ~ dto.expiresAt ~ '.', spacing: 24 } only %}
+  {% include '@CorePhp/components/_button.html.twig' with { label: 'Choisir mon offre', url: dto.dossierUrl, spacing: 24 } only %}
+{% endblock %}

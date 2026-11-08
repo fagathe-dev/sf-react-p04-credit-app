@@ -1,0 +1,70 @@
+@use 'tokens' as *;
+
+// Estimateur de mensualité des pages projet (assets/ts/components/monthlyEstimator.ts)
+.estimator {
+  display: grid;
+  gap: $space * 3;
+  padding: $space * 3;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-surface;
+  box-shadow: $shadow;
+
+  @include from(860px) {
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+  }
+}
+
+.estimator-fields {
+  display: grid;
+  gap: $space * 3;
+}
+
+.range-field {
+  display: grid;
+  gap: $space;
+
+  span {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+    color: $color-ink;
+  }
+
+  output {
+    color: $color-primary;
+  }
+
+  input[type='range'] {
+    width: 100%;
+    accent-color: $color-primary;
+  }
+}
+
+.estimator-result {
+  padding: $space * 3;
+  border-radius: $radius-sm;
+  background: $color-primary-soft;
+  text-align: center;
+
+  p {
+    margin-bottom: $space;
+  }
+
+  strong {
+    display: block;
+    font-size: 2rem;
+    color: $color-primary;
+  }
+
+  .btn {
+    margin-top: $space;
+    width: 100%;
+  }
+}
+
+// Sans JavaScript, les curseurs n'ont pas d'effet : seul l'exemple serveur et le lien sont affichés
+.estimator:not(.is-ready) .estimator-fields {
+  display: none;
+}

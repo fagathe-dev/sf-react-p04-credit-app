@@ -1,0 +1,114 @@
+@use 'credit-front-core/src/styles/tokens' as *;
+
+// Styles propres à credit_client (la base commune vient de credit-front-core/src/styles/index.scss)
+
+.app-header-inner {
+  .btn {
+    min-height: 40px;
+  }
+}
+
+.center-block {
+  margin: $space * 3 auto 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: $space * 3;
+
+  @include from(960px) {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+  }
+}
+
+.dashboard-side {
+  display: grid;
+  gap: $space * 3;
+}
+
+.consent-list {
+  display: grid;
+  gap: $space * 1.5;
+  margin: 0 0 $space * 2;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: flex;
+    gap: $space;
+    align-items: flex-start;
+  }
+
+  svg {
+    flex: none;
+    color: $color-success;
+  }
+
+  div {
+    display: grid;
+  }
+}
+
+.consent-switch {
+  padding-top: $space * 2;
+  border-top: 1px solid $color-border;
+
+  .toggle > span:last-child {
+    display: grid;
+    gap: 2px;
+  }
+}
+
+.dossier-list {
+  display: grid;
+  gap: $space * 1.5;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dossier-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  gap: $space * 2;
+  align-items: center;
+  padding: $space * 2;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-surface;
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    border-color: $color-primary;
+  }
+
+  > svg {
+    color: $color-muted;
+  }
+}
+
+.dossier-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: $radius-sm;
+  background: $color-primary-soft;
+  color: $color-primary;
+}
+
+.dossier-main {
+  display: grid;
+}
+
+.dossier-page {
+  display: grid;
+  gap: $space * 3;
+
+  h1 {
+    margin: 0;
+  }
+}
+

@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% include 'partials/_breadcrumb.html.twig' with {current: 'Guide du crédit à la consommation'} only %}
+
+    <article class="container narrow prose">
+        <h1>Comment fonctionne un crédit à la consommation ?</h1>
+        <p class="lead">Un crédit à la consommation est un prêt de 200 € à 75 000 € destiné à financer un projet personnel, remboursé par des mensualités fixes sur une durée connue à l'avance.</p>
+
+        <h2>Prêt affecté ou prêt personnel</h2>
+        <p>Un <strong>prêt affecté</strong> (auto, travaux, crédit vert) est lié à un achat précis : si la vente n'a pas lieu, le crédit est annulé. Un <strong>prêt personnel</strong> laisse l'usage des fonds libre, avec un taux généralement un peu plus élevé.</p>
+
+        <h2>Le TAEG, l'indicateur pour comparer</h2>
+        <p>Le taux annuel effectif global inclut les intérêts et les frais obligatoires. À montant et durée égaux, l'offre au TAEG le plus bas est la moins chère. L'assurance emprunteur facultative n'est pas comprise dans le TAEG ; son coût est affiché à part.</p>
+
+        <h2>Le taux d'endettement</h2>
+        <p>Il rapporte vos charges mensuelles (loyer ou prêt immobilier, crédits en cours, pensions versées, nouvelle mensualité) à vos revenus mensuels. Les revenus locatifs sont retenus à {{ rentalWeightBps|bps(0) }}, pour tenir compte des périodes de vacance et des charges. Selon les partenaires, le plafond se situe entre 30 % et 35 %.</p>
+
+        <h2>Le reste à vivre</h2>
+        <p>C'est ce qui reste chaque mois une fois toutes les charges payées. Nous retenons un minimum de {{ singleRemainderCents|cents }} pour une personne seule, {{ coupleRemainderCents|cents }} pour un couple, plus {{ childRemainderCents|cents }} par enfant à charge. Certains partenaires exigent davantage.</p>
+
+        <h2>Ce que coûte un crédit selon le projet</h2>
+        <table class="data-table">
+            <caption>TAEG fixe minimal du catalogue de nos partenaires</caption>
+            <thead><tr><th scope="col">Projet</th><th scope="col">TAEG à partir de</th><th scope="col">Montants</th><th scope="col">Durées</th></tr></thead>
+            <tbody>
+                {% for row in pricing %}
+                    <tr>
+                        <th scope="row">{{ row.project.label }}</th>
+                        <td>{{ row.fromAprBps|bps }}</td>
+                        <td>{{ row.minAmountCents|cents }} – {{ row.maxAmountCents|cents }}</td>
+                        <td>{{ row.minDurationMonths }} – {{ row.maxDurationMonths }} mois</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2>Vos droits</h2>
+        <ul>
+            <li>Une fiche d'information précontractuelle vous est remise avant toute signature.</li>
+            <li>Vous disposez de 14 jours calendaires pour vous rétracter après la signature de l'offre.</li>
+            <li>Le remboursement anticipé est toujours possible, avec des indemnités plafonnées par la loi.</li>
+        </ul>
+
+        <h2>Questions fréquentes</h2>
+        <div class="faq">
+            {% for entry in faq %}
+                <details>
+                    <summary>{{ entry.question }}</summary>
+                    <p>{{ entry.answer }}</p>
+                </details>
+            {% endfor %}
+        </div>
+
+        <p class="actions center"><a class="btn btn-primary" href="{{ tunnel_url() }}">Comparer les offres</a></p>
+    </article>
+{% endblock %}

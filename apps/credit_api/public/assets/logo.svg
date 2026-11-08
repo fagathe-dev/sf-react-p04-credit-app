@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" role="img" aria-label="Comparateur de crédit">
+  <title>Comparateur de crédit</title>
+  <rect x="4" y="8" width="32" height="32" rx="8" fill="#1d4ed8"/>
+  <path d="M12 30 L18 22 L23 26 L29 16" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="46" y="31" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#111827">Comparateur de crédit</text>
+</svg>

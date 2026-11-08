@@ -1,0 +1,6 @@
+# Paramètres de fagathe-dev/core-php propres à credit_api.
+when@dev:
+    parameters:
+        # Les fixtures et les tests locaux utilisent des domaines factices (example.com…) : pas de contrôle DNS
+        # des destinataires en développement. Le contrôle reste actif en production.
+        core_php.email.check_deliverability: false

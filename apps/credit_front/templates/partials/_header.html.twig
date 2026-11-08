@@ -1,0 +1,17 @@
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="{{ path('app_home') }}">
+            <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="8"/><path d="M8 21l5-6 4 3 6-8"/></svg>
+            <span>{{ app_name }}</span>
+        </a>
+        <nav class="main-nav" aria-label="Navigation principale">
+            <ul>
+                {% for page in project_pages() %}
+                    <li><a href="{{ path('app_project_show', {slug: page.slug}) }}"{% if app.request.attributes.get('slug') == page.slug %} aria-current="page"{% endif %}>{{ page.projectType.label }}</a></li>
+                {% endfor %}
+                <li><a href="{{ path('app_guide_credit_conso') }}"{% if app.request.attributes.get('_route') == 'app_guide_credit_conso' %} aria-current="page"{% endif %}>Guide</a></li>
+            </ul>
+        </nav>
+        <a class="btn btn-primary btn-sm" href="{{ tunnel_url() }}">Comparer</a>
+    </div>
+</header>

@@ -1,0 +1,40 @@
+{% extends 'legal/_layout.html.twig' %}
+
+{% block legal_title %}Politique de confidentialité et gestion des données{% endblock %}
+
+{% block legal_content %}
+    <section>
+        <h2>Responsable du traitement</h2>
+        <p>Frédérick AGATHE, éditeur du site (<a href="mailto:agathefrederick@gmail.com">agathefrederick@gmail.com</a>).</p>
+    </section>
+
+    <section>
+        <h2>Finalités</h2>
+        <p>Les informations saisies dans le formulaire de comparaison (projet, situation familiale et professionnelle, revenus, charges, identité, coordonnées) sont utilisées pour&nbsp;:</p>
+        <ul>
+            <li>évaluer votre solvabilité (taux d'endettement, reste à vivre, score)&nbsp;;</li>
+            <li>interroger le catalogue des offres partenaires et calculer les offres compatibles avec votre profil&nbsp;;</li>
+            <li>créer votre espace client, dans lequel vous retrouvez votre demande et son résultat&nbsp;;</li>
+            <li>vous faire rappeler par un conseiller, uniquement si vous l'avez accepté.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Transmission aux partenaires</h2>
+        <p>Vos données ne sont transmises aux établissements partenaires ({% for partner in partners %}{{ partner.name }}{{ loop.last ? '' : (loop.revindex0 == 1 ? ' et ' : ', ') }}{% endfor %}) qu'avec votre accord explicite, recueilli par une case à cocher dédiée avant l'envoi de votre demande, en vue du choix de votre offre.</p>
+        <p>Ces partenaires sont fictifs&nbsp;: dans ce projet de démonstration, aucune donnée n'est communiquée à un établissement réel.</p>
+    </section>
+
+    <section>
+        <h2>Sécurité et conservation</h2>
+        <p>L'analyse de votre demande est calculée en mémoire par l'API, sans état de session côté serveur ni appel à un service extérieur. Pour que vous retrouviez votre résultat, la demande et son résultat sont ensuite enregistrés dans votre espace client.</p>
+        <p>L'accès à l'espace client se fait sans mot de passe&nbsp;: un code à usage unique (OTP) est envoyé à votre adresse e-mail à chaque connexion.</p>
+        <p>Dans ce projet de démonstration, les données peuvent être supprimées à tout moment, en particulier sur simple demande de votre part.</p>
+    </section>
+
+    <section>
+        <h2>Vos droits</h2>
+        <p>Conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification et d'effacement de vos données, ainsi que du droit de retirer votre consentement au rappel par un conseiller depuis votre espace client.</p>
+        <p>Pour exercer ces droits, écrivez à <a href="mailto:agathefrederick@gmail.com">agathefrederick@gmail.com</a>. Vous pouvez également adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener noreferrer">www.cnil.fr</a>).</p>
+    </section>
+{% endblock %}

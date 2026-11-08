@@ -1,0 +1,127 @@
+{
+  "code": "solva_bank",
+  "name": "SolvaBank",
+  "logo": "/assets/logos/solvabank.svg",
+  "offers": [
+    {
+      "offerCode": "SOLVA_EQUIP_SOUPLE",
+      "productName": "Prêt Équipement Souple",
+      "projectType": "personal_goods",
+      "nominalRate": 7.16,
+      "apr": 7.4,
+      "insuranceRate": 0.45,
+      "referenceAmount": 4000,
+      "referenceDurationMonths": 36,
+      "monthlyInstallment": 123.8,
+      "totalFinancingCost": 510.8,
+      "criteria": {
+        "minAmount": 1000,
+        "maxAmount": 12000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 60,
+        "minMonthlyIncome": 1300,
+        "maxDebtRatioPercent": 35.0,
+        "minRemainderToLive": 700,
+        "minSeniorityMonths": 3,
+        "minRiskGrade": "GRADE_D",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CDD",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "SOLVA_TRAVAUX_MAX",
+      "productName": "Prêt Travaux Max",
+      "projectType": "home_improvement",
+      "nominalRate": 6.41,
+      "apr": 6.6,
+      "insuranceRate": 0.45,
+      "referenceAmount": 20000,
+      "referenceDurationMonths": 84,
+      "monthlyInstallment": 296.12,
+      "totalFinancingCost": 5504.08,
+      "criteria": {
+        "minAmount": 3000,
+        "maxAmount": 60000,
+        "minDurationMonths": 24,
+        "maxDurationMonths": 96,
+        "minMonthlyIncome": 1500,
+        "maxDebtRatioPercent": 35.0,
+        "minRemainderToLive": 700,
+        "minSeniorityMonths": 6,
+        "minRiskGrade": "GRADE_D",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CDD",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "SOLVA_TRESO_OXYGENE",
+      "productName": "Prêt Trésorerie Oxygène",
+      "projectType": "cash_treasury",
+      "nominalRate": 7.63,
+      "apr": 7.9,
+      "insuranceRate": 0.45,
+      "referenceAmount": 6000,
+      "referenceDurationMonths": 48,
+      "monthlyInstallment": 145.44,
+      "totalFinancingCost": 1089.12,
+      "criteria": {
+        "minAmount": 1500,
+        "maxAmount": 20000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 72,
+        "minMonthlyIncome": 1350,
+        "maxDebtRatioPercent": 35.0,
+        "minRemainderToLive": 700,
+        "minSeniorityMonths": 3,
+        "minRiskGrade": "GRADE_D",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CDD",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    },
+    {
+      "offerCode": "SOLVA_AUTO_FLEX",
+      "productName": "Prêt Auto Flex",
+      "projectType": "auto",
+      "nominalRate": 6.6,
+      "apr": 6.8,
+      "insuranceRate": 0.45,
+      "referenceAmount": 10000,
+      "referenceDurationMonths": 60,
+      "monthlyInstallment": 196.13,
+      "totalFinancingCost": 1992.8,
+      "criteria": {
+        "minAmount": 2000,
+        "maxAmount": 30000,
+        "minDurationMonths": 12,
+        "maxDurationMonths": 72,
+        "minMonthlyIncome": 1350,
+        "maxDebtRatioPercent": 35.0,
+        "minRemainderToLive": 700,
+        "minSeniorityMonths": 3,
+        "minRiskGrade": "GRADE_D",
+        "allowedEmploymentStatuses": [
+          "CDI",
+          "CDD",
+          "CIVIL_SERVANT",
+          "INDEPENDENT",
+          "RETIRED"
+        ]
+      }
+    }
+  ]
+}

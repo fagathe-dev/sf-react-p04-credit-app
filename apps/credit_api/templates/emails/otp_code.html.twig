@@ -1,0 +1,35 @@
+{% extends '@CorePhp/layout.html.twig' %}
+
+{% block preheader %}Votre code de connexion : {{ dto.code }} (valable {{ dto.ttlMinutes }} minutes){% endblock %}
+
+{% block content %}
+  {% include '@CorePhp/components/_text.html.twig' with {
+    content: 'Bonjour' ~ (dto.recipientName ? ' ' ~ dto.recipientName|e : '') ~ ',',
+    level: 'h2',
+    spacing: 16,
+  } only %}
+
+  {% include '@CorePhp/components/_text.html.twig' with {
+    content: 'Voici votre code de connexion à usage unique. Il est valable ' ~ dto.ttlMinutes ~ ' minutes.',
+    spacing: 16,
+  } only %}
+
+  {% include '@CorePhp/components/_code.html.twig' with {
+    code: dto.code,
+    label: 'Code de connexion',
+    spacing: 24,
+  } only %}
+
+  {% include '@CorePhp/components/_button.html.twig' with {
+    label: 'Saisir mon code',
+    url: dto.loginUrl,
+    spacing: 24,
+  } only %}
+
+  {% include '@CorePhp/components/_text.html.twig' with {
+    content: 'Si vous n\'êtes pas à l\'origine de cette demande, ignorez simplement cet e-mail : personne ne pourra se connecter sans ce code.',
+    level: 'small',
+    tone: 'muted',
+    spacing: 16,
+  } only %}
+{% endblock %}

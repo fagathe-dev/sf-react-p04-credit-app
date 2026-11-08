@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% set cta_url = tunnel_url(page.projectType, page.defaultAmountCents, page.defaultDurationMonths) %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="module" src="{{ asset('js/pages/project.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+    <section class="page-hero hero-compact">
+        <div class="container hero-inner">
+            <div class="hero-copy">
+                {% include 'partials/icons/_project.html.twig' with {project: page.projectType} only %}
+                <h1>{{ page.heading }}</h1>
+                {% for paragraph in page.introduction %}
+                    <p class="lead">{{ paragraph }}</p>
+                {% endfor %}
+                <div class="actions">
+                    <a class="btn btn-primary" href="{{ cta_url }}">Comparer les offres</a>
+                    <a class="btn btn-outline-primary" href="{{ simulator_url(page.projectType) }}">Simuler une mensualité</a>
+                </div>
+            </div>
+
+            {% if pricing %}
+                <aside class="rate-card" aria-label="Barème indicatif">
+                    <p class="rate-card-label">TAEG fixe à partir de</p>
+                    <p class="rate-card-value">{{ pricing.fromAprBps|bps }}</p>
+                    <dl class="facts">
+                        <div><dt>Montant</dt><dd>{{ pricing.minAmountCents|cents }} à {{ pricing.maxAmountCents|cents }}</dd></div>
+                        <div><dt>Durée</dt><dd>{{ pricing.minDurationMonths }} à {{ pricing.maxDurationMonths }} mois</dd></div>
+                        <div><dt>Offres comparées</dt><dd>{{ pricing.offersCount }} offres, {{ pricing.partners|length }} partenaires</dd></div>
+                    </dl>
+                    <p class="muted small">Barème indicatif du catalogue de nos partenaires. Le taux proposé dépend de votre profil.</p>
+                </aside>
+            {% endif %}
+        </div>
+    </section>
+
+    {% include 'partials/_breadcrumb.html.twig' with {current: page.projectType.label} only %}
+
+    {% if pricing %}
+        {% set offer = pricing.exampleOffer %}
+        <section class="section">
+            <div class="container">
+                <h2>Exemple de mensualité</h2>
+                <div class="example">
+                    <p>
+                        Pour un {{ page.projectType.label|lower }} de <strong>{{ offer.referenceAmountCents|cents }}</strong> sur <strong>{{ offer.referenceDurationMonths }} mois</strong>,
+                        au taux débiteur fixe de {{ offer.nominalRateBps|bps }} (TAEG fixe de {{ offer.aprBps|bps }}),
+                        vous remboursez <strong>{{ offer.referenceDurationMonths }} mensualités de {{ pricing.exampleMonthlyInstallmentCents|cents(true) }}</strong> hors assurance facultative.
+                    </p>
+                    <p>
+                        Montant total dû : {{ pricing.exampleTotalRepaidCents|cents(true) }}, dont {{ pricing.exampleTotalInterestCents|cents(true) }} d'intérêts.
+                        Exemple représentatif établi à partir de l'offre {{ offer.productName }} de {{ offer.partnerName }}.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        {% set criteria = offer.criteria %}
+        {% set default_amount = max(criteria.minAmountCents, min(criteria.maxAmountCents, page.defaultAmountCents)) // 100 %}
+        {% set default_duration = max(criteria.minDurationMonths, min(criteria.maxDurationMonths, page.defaultDurationMonths)) %}
+        <section class="section section-alt" aria-labelledby="estimation-title">
+            <div class="container">
+                <h2 id="estimation-title">Estimez votre mensualité</h2>
+                <form class="estimator" data-estimator data-nominal-rate-bps="{{ offer.nominalRateBps }}" data-tunnel-url="{{ tunnel_url(page.projectType) }}" novalidate>
+                    <div class="estimator-fields">
+                        <label class="range-field">
+                            <span>Montant <output data-output="amount">{{ (default_amount * 100)|cents }}</output></span>
+                            <input type="range" name="amount" min="{{ criteria.minAmountCents // 100 }}" max="{{ criteria.maxAmountCents // 100 }}" step="100" value="{{ default_amount }}">
+                        </label>
+                        <label class="range-field">
+                            <span>Durée <output data-output="duration">{{ default_duration }} mois</output></span>
+                            <input type="range" name="duration" min="{{ criteria.minDurationMonths }}" max="{{ criteria.maxDurationMonths }}" step="1" value="{{ default_duration }}">
+                        </label>
+                        <p class="muted small">Calcul indicatif au taux débiteur de {{ offer.nominalRateBps|bps }} ({{ offer.productName }}), hors assurance facultative. Coût des intérêts : <span data-output="interest">{{ pricing.exampleTotalInterestCents|cents(true) }}</span>.</p>
+                    </div>
+                    <div class="estimator-result">
+                        <p>Mensualité estimée</p>
+                        <strong data-output="monthly">{{ pricing.exampleMonthlyInstallmentCents|cents(true) }}</strong>
+                        <div class="sticky-cta">
+                            <a class="btn btn-primary btn-block" data-output="cta" href="{{ cta_url }}">Comparer les offres personnalisées</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    {% endif %}
+
+    <section class="section section-alt">
+        <div class="container two-columns">
+            <div>
+                <h2>Ce que vous pouvez financer</h2>
+                <ul class="check-list">
+                    {% for useCase in page.useCases %}
+                        <li>{{ useCase }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h2>Comment est étudiée votre demande ?</h2>
+                <p>Le comparateur calcule votre taux d'endettement après la nouvelle mensualité et le reste à vivre de votre foyer, puis interroge les critères de chaque partenaire : contrat, ancienneté, revenus et montant.</p>
+                <p>Si aucune offre ne correspond tout de suite, il cherche un montant plus bas ou une durée plus longue, et un conseiller peut vous rappeler pour en parler avec vous.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container narrow">
+            <h2>Questions fréquentes</h2>
+            <div class="faq">
+                {% for entry in page.faq %}
+                    <details>
+                        <summary>{{ entry.question }}</summary>
+                        <p>{{ entry.answer }}</p>
+                    </details>
+                {% endfor %}
+            </div>
+            <p class="actions center"><a class="btn btn-primary" href="{{ cta_url }}">Comparer les offres pour mon projet</a></p>
+        </div>
+    </section>
+{% endblock %}

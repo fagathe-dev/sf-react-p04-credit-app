@@ -1,0 +1,87 @@
+@use 'credit-front-core/src/styles/tokens' as *;
+
+.app-header nav a {
+  font-weight: 500;
+  color: $color-muted;
+  text-decoration: none;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+.tunnel {
+  display: grid;
+  gap: $space * 3;
+}
+
+.tunnel-card {
+  padding: $space * 3;
+  border: 1px solid $color-border;
+  border-radius: $radius;
+  background: $color-surface;
+  box-shadow: $shadow;
+
+  h1:focus {
+    outline: none;
+  }
+}
+
+.tunnel-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: $space * 2;
+  margin-top: $space * 3;
+}
+
+.space-notice {
+  margin: $space * 2 0 0;
+}
+
+// Bandeau des pages légales du site vitrine (components/layout/LegalBanner.tsx), en bas de page
+.legal-banner {
+  border-top: 1px solid $color-border;
+  background: $color-surface;
+  font-size: 0.875rem;
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $space $space * 3;
+    margin: 0;
+    padding: $space * 2.5 0;
+    list-style: none;
+  }
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    gap: $space * 0.5;
+    color: $color-muted;
+    text-decoration: none;
+
+    &:hover {
+      color: $color-primary;
+      text-decoration: underline;
+    }
+  }
+
+  .external-icon {
+    flex: none;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.legal-notice {
+  margin: 0;
+  padding: $space * 1.5;
+  border-radius: $radius-sm;
+  background: $color-warning-soft;
+  font-weight: 600;
+  color: $color-warning;
+}

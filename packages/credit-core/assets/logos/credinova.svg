@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 48" role="img" aria-label="CrediNova">
+  <title>CrediNova</title>
+  <g fill="#1f2a37">
+    <circle cx="24" cy="24" r="16" fill="none" stroke="#1f2a37" stroke-width="5"/><circle cx="24" cy="24" r="5"/>
+    <text x="56" y="31" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="20" font-weight="700" letter-spacing="0.2">CrediNova</text>
+  </g>
+</svg>
